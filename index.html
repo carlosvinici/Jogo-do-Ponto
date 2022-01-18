@@ -98,27 +98,28 @@
 
     
         let firstChoise;    /* Separando escolhas de cada jogador */
-        let count = 0;
-        const onePlayer = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];
+        let countClick = 0;
+        const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];
 
         function ChoiceValidation(p) {
-            count++;
+            const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClick );
 
             if (p == firstChoise + 1 || p == firstChoise - 1 || p == firstChoise + 6 || p == firstChoise - 6){
-                console.log('sim');
-                if( count == onePlayer[count] - 3){
+                console.log('é valido');
+                if( countClick == clickPlayerOne){
                     console.log('tem no array')
                     const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctGreen');
                     const twoChoise = document.getElementById(`${p}`).classList.add('correctGreen');
                 }else{
-                    console.log('no')
+                    console.log('não tem no array')
                     const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctOrange');
                     const twoChoise = document.getElementById(`${p}`).classList.add('correctOrange'); 
                 }
             }else{ 
                 
-                console.log('não')
+                console.log('não é valido')
             }
+            countClick++;
             
             firstChoise = p;
 
