@@ -1,5 +1,5 @@
 # Jogo-do-Ponto
-![What is this](myimage.png)
+![alt text](https://brstatic.guiainfantil.com/uploads/lazerjuegos/puntosG.jpg)
 # Regras do Jogo
 O jogo de ligar os pontos é um jogo de criança que eu costumava jogar com meus colegas na epoca do fundamental.
 A proposta do jogo é simples, no 1 contra 1, cada jogador tem de traçar uma linha ligando os pontos, quando os pontos formam um quadrado o ultimo que traçou a linha ganha um ponto.
