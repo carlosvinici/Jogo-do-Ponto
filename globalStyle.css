@@ -11,7 +11,7 @@ main{
     margin-top: 20px;
     margin-bottom: 30px;
 }
-#pontos{
+#InputsRadio{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;

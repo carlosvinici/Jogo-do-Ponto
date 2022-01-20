@@ -50,10 +50,13 @@ function ChoiceValidation(p) {
         countClick++;
         firstChoise = p;
     }
+    else if (countClick == 3){
+        console.log('é valido == 3')
+        firstChoise = p;
+        countClick++;
+    }
     else{
         console.log('não é valido')
-        /* const falseChoise = document.getElementById(`${p}`); */
-        /* falseChoise.setAttribute('checked', false) */
         removerChecked(p);
         alert('Selecão inválida!')
     }
