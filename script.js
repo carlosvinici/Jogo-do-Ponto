@@ -34,26 +34,43 @@ function StartGame() {
 
 /* Validando Escolha */
 let firstChoise = 1;   
+let lastChoise;
 let countClick = 0;
 const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
 
 
+function removerChecked() {
+    var falseChoise = document.getElementById(`${p}`);
+    falseChoise.checked = false;
+}
+
+
 function ChoiceValidation(p) {
+    countClick++
 
-    function removerChecked() {
-        var falseChoise = document.getElementById(`${p}`);
-        falseChoise.checked = false;
-    }
-
-    if (countClick == 0 || p == firstChoise + 1 || p == firstChoise - 1 || p == firstChoise + 6 || p == firstChoise - 6){
+    if (countClick == 1){
         console.log('é valido');
-        countClick++;
         firstChoise = p;
     }
-    else if (countClick == 3){
-        console.log('é valido == 3')
-        firstChoise = p;
-        countClick++;
+    else if (p == firstChoise + 1){
+        console.log('é valido');
+        countClick = 0;
+    }
+    else if (p == firstChoise - 1){
+        console.log('é valido');
+        countClick = 0;              
+    }
+    else if (p == firstChoise + 6){
+        console.log('é valido');
+        countClick = 0;     
+        
+        const lineDown = document.createElement('span');
+        document.getElementById(`${p}`).appendChild(lineDown)
+        lineDown.setAttribute('class', 'classlineDown');   
+    }
+    else if (p == firstChoise - 6) {
+        console.log('é valido');
+        countClick = 0;
     }
     else{
         console.log('não é valido')
