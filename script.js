@@ -17,16 +17,25 @@ function Template() {
 }
 
 
-/* Gerando Inputs do tipo radio  */
+/* Gerando template do jogo  */
 let c = 1; /* Count para gerar os <inputs> dentro do while */
 function StartGame() {
     while ( c < 37 ){
+
+        /* Gerando o input do tipo radio */
         const button = document.createElement('input');
         button.setAttribute('type', 'radio')
         button.setAttribute('onclick', `ChoiceValidation(${c})`)
         button.setAttribute('id', c)
         button.classList.add('buttonPonto')
         document.getElementById('InputsRadio').appendChild(button);
+
+        /* Gerando Linha para ligar os pontos <imput> */
+        const rowRight = document.createElement('span');
+        rowRight.classList.add('defaultRow');
+        rowRight.setAttribute('id', `row${c}`)
+        document.getElementById('InputsRadio').appendChild(rowRight);
+
         c++;
     }
 }
@@ -34,19 +43,21 @@ function StartGame() {
 
 /* Validando Escolha */
 let firstChoise = 1;   
-let lastChoise;
 let countClick = 0;
 const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
 
 
-function removerChecked() {
-    var falseChoise = document.getElementById(`${p}`);
-    falseChoise.checked = false;
-}
+
 
 
 function ChoiceValidation(p) {
     countClick++
+
+    function removerChecked() {
+        let falseChoise = document.getElementById(`${p}`);
+        falseChoise.checked = false;
+    }
+
 
     if (countClick == 1){
         console.log('é valido');
@@ -63,10 +74,7 @@ function ChoiceValidation(p) {
     else if (p == firstChoise + 6){
         console.log('é valido');
         countClick = 0;     
-        
-        const lineDown = document.createElement('span');
-        document.getElementById(`${p}`).appendChild(lineDown)
-        lineDown.setAttribute('class', 'classlineDown');   
+    
     }
     else if (p == firstChoise - 6) {
         console.log('é valido');
@@ -78,8 +86,8 @@ function ChoiceValidation(p) {
         alert('Selecão inválida!')
     }
 
-    /* Analisa o countClick para determinar a diferença para os jogadores */
-    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClick ); /* Procura no array se o a vez do clique é do player one */
+    /* Analisa o countClick para determinar a diferença para os jogadores 
+    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClick ); Procura no array se o a vez do clique é do player one
     console.log(clickPlayerOne);
     
     if( countClick == clickPlayerOne){
@@ -92,7 +100,7 @@ function ChoiceValidation(p) {
         const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctOrange');
         const twoChoise = document.getElementById(`${p}`).classList.add('correctOrange'); 
     }
-
+*/
     
     
     

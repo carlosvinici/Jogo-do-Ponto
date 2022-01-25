@@ -13,8 +13,7 @@ main{
 }
 #InputsRadio{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 4rem;
     height: 3rem;
     padding: 20px;
@@ -60,11 +59,10 @@ input[type='radio']:checked:after {
 }
 
 
-.classlineDown {
-    z-index: 10;
-    content: 'skksksksksk';
-    width: 20px;
-    height: 20px;
-    background-color: #777777;
-
+.defaultRow {
+    width: 4px;
+    height: 2px;
+    color: #0b771a;
+    
 }
+
