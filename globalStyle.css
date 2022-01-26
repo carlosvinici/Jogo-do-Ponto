@@ -12,13 +12,12 @@ main{
     margin-bottom: 30px;
 }
 #InputsRadio{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    width: 4rem;
-    height: 3rem;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    width: 330px;
+    height: 290px;
+    background-color: #0b771a;
+    margin: 0;
+    padding: 0;
 }
 input[type='radio']:after {
     width: 10px;
@@ -56,15 +55,25 @@ input[type='radio']:checked:after {
 
 
 .defaultRowRigth {
+    display: inline-block;
     width: 40px;
-    height: 3px;
+    height: 2px;
     background-color: #dbdfdb;
+
 
 }
 .defaultRowDown {
+    display: inline-block;
     width: 3px;
     height: 40px;
     background-color: #dbdfdb;
-    margin-right: 20px;
+    margin-right: 42px;
+    margin-left: 10px;
+
 }
 
+/* .defaultRowDown:nth-child(17n) {
+    background-color: #d3660c;
+    margin-right: 0;
+    margin-left: 37px;
+} */

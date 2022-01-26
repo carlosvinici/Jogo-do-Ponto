@@ -43,14 +43,19 @@ function StartGame() {
         }
         /* A BAIXO */
         else {
-            limite = limite + 6;
+            limite = limite + 6; /* Declara o proximo limite */
 
+            /* cria uma div para servir como container das nossas linhas */
+            const containerRowDown = document.createElement('div');
+            document.getElementById('InputsRadio').appendChild(containerRowDown);
+            containerRowDown.classList.add('containerRowsDown');
+
+            /* Cria nossas linhas, em seguida declara suas classes e declara ela como filha de nosso container criado acima */
             for (let index = 0; index < 6; index++) {
                 const rowDown = document.createElement('span');
                 rowDown.classList.add('defaultRowDown');
-                rowDown.setAttribute('id', `rowDown${index}`)
-                document.getElementById('InputsRadio').appendChild(rowDown);
-                
+                rowDown.setAttribute('id', `rowDown${index}`);
+                document.getElementsByClassName('containerRowsDown').appendChild(rowDown);
             }
             
         }
