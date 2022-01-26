@@ -19,6 +19,7 @@ function Template() {
 
 /* Gerando template do jogo  */
 let c = 1; /* Count para gerar os <inputs> dentro do while */
+let limite = 6;
 function StartGame() {
     while ( c < 37 ){
 
@@ -30,12 +31,30 @@ function StartGame() {
         button.classList.add('buttonPonto')
         document.getElementById('InputsRadio').appendChild(button);
 
-        /* Gerando Linha para ligar os pontos <imput> */
-        const rowRight = document.createElement('span');
-        rowRight.classList.add('defaultRow');
-        rowRight.setAttribute('id', `row${c}`)
-        document.getElementById('InputsRadio').appendChild(rowRight);
 
+        /* Gerando Linha para ligar os pontos <imput> */
+
+        /* A DIREITA */
+        if( c != limite ){
+            const rowRight = document.createElement('span');
+            rowRight.classList.add('defaultRowRigth');
+            rowRight.setAttribute('id', `row${c}`)
+            document.getElementById('InputsRadio').appendChild(rowRight);
+        }
+        /* A BAIXO */
+        else {
+            limite = limite + 6;
+
+            for (let index = 0; index < 6; index++) {
+                const rowDown = document.createElement('span');
+                rowDown.classList.add('defaultRowDown');
+                rowDown.setAttribute('id', `rowDown${index}`)
+                document.getElementById('InputsRadio').appendChild(rowDown);
+                
+            }
+            
+        }
+        
         c++;
     }
 }
