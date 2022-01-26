@@ -14,7 +14,7 @@ main{
 #InputsRadio{
     display: inline-block;
     width: 330px;
-    height: 350px;
+    height: 370px;
     background-color: #0b771a;
     margin: 0;
     padding: 0;
@@ -55,15 +55,17 @@ input[type='radio']:checked:after {
 
 .containerRowsDown{
     display: flex;
-    width: 315px;
-    margin-right: 14px;
+    width: 318px;
+    margin-left: 4px;
+    margin-top: -4px;
     justify-content: space-between;
 
 }
 
 .defaultRowRigth {
     display: inline-block;
-    width: 40px;
+    margin: 0px -3px 5px -3px;
+    width: 46px;
     height: 4px;
     background-color: #dbdfdb;
 
@@ -74,10 +76,6 @@ input[type='radio']:checked:after {
     width: 4px;
     height: 40px;
     background-color: #dbdfdb;
+    margin: 0px 5px 0px 5px;
 }
 
-/* .defaultRowDown:nth-child(17n) {
-    background-color: #d3660c;
-    margin-right: 0;
-    margin-left: 37px;
-} */
