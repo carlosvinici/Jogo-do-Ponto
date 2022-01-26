@@ -19,7 +19,8 @@ function Template() {
 
 /* Gerando template do jogo  */
 let c = 1; /* Count para gerar os <inputs> dentro do while */
-let limite = 6;
+const limite = 6;
+let proxLimite = limite;
 function StartGame() {
     while ( c < 37 ){
 
@@ -35,7 +36,7 @@ function StartGame() {
         /* Gerando Linha para ligar os pontos <imput> */
 
         /* A DIREITA */
-        if( c != limite ){
+        if( c != proxLimite ){
             const rowRight = document.createElement('span');
             rowRight.classList.add('defaultRowRigth');
             rowRight.setAttribute('id', `row${c}`)
@@ -43,20 +44,23 @@ function StartGame() {
         }
         /* A BAIXO */
         else {
-            limite = limite + 6; /* Declara o proximo limite */
-
+            
             /* cria uma div para servir como container das nossas linhas */
             const containerRowDown = document.createElement('div');
+            containerRowDown.setAttribute('id', `cointainerRow${proxLimite}`)
             document.getElementById('InputsRadio').appendChild(containerRowDown);
             containerRowDown.classList.add('containerRowsDown');
 
             /* Cria nossas linhas, em seguida declara suas classes e declara ela como filha de nosso container criado acima */
-            for (let index = 0; index < 6; index++) {
-                const rowDown = document.createElement('span');
-                rowDown.classList.add('defaultRowDown');
-                rowDown.setAttribute('id', `rowDown${index}`);
-                document.getElementsByClassName('containerRowsDown').appendChild(rowDown);
+            if (proxLimite != 36){
+                for (let index = 0; index < 6; index++) {
+                    const rowDown = document.createElement('span');
+                    rowDown.classList.add('defaultRowDown');
+                    rowDown.setAttribute('id', `rowDown${index}`);
+                    document.getElementById(`cointainerRow${proxLimite}`).appendChild(rowDown);
+                }
             }
+            proxLimite = proxLimite + limite; /* Declara o proximo limite */
             
         }
         
