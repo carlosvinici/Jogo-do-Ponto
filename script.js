@@ -19,8 +19,9 @@ function Template() {
 
 /* Gerando template do jogo  */
 let c = 1; /* Count para gerar os <inputs> dentro do while */
-const limite = 6;
-let proxLimite = limite;
+const limite = 6; limite /* representa o numero de colunas sendo limite a ultima coluna */
+let proxLimite = limite;  /* para o script entender que não pode gerar linhas apos o limite, essa variavel vai calcular ao decorrer da execução os pontos de limite */
+
 function StartGame() {
     while ( c < 37 ){
 
@@ -60,7 +61,7 @@ function StartGame() {
                     document.getElementById(`cointainerRow${proxLimite}`).appendChild(rowDown);
                 }
             }
-            proxLimite = proxLimite + limite; /* Declara o proximo limite */
+            proxLimite = proxLimite + limite; /* Calcula o proximo limite */
             
         }
         
@@ -72,11 +73,6 @@ function StartGame() {
 /* Validando Escolha */
 let firstChoise = 1;   
 let countClick = 0;
-const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
-
-
-
-
 
 function ChoiceValidation(p) {
     countClick++
