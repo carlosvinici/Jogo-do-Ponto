@@ -70,6 +70,17 @@ function StartGame() {
 }
 
 
+
+let count = 1;
+function removerChecked() {
+    while (count < 37) {
+        let falseChoise = document.getElementById(`${count}`);
+        falseChoise.checked = false;
+        count++;
+    }
+
+}
+
 /* Validando Escolha */
 let firstChoise = 0;   
 let countClick = 0; /* vai alternar entre 1 e 2, ela é o limite de escolha que o jogador pode fazer ao chegar em 2 a comparação é feita entre firstChoise e P  */
@@ -79,57 +90,65 @@ const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26,
 function ChoiceValidation(p) {
     countClick++
 
-    function removerChecked() {
-        let falseChoise = document.getElementById(`${p}`);
-        falseChoise.checked = false;
+    /* maior numero de id  para dar a cor das linhas horizontais*/
+    let maiorNumeroId = 0;
+    p > firstChoise 
+    ? maiorNumeroId = p - 1
+    : maiorNumeroId = firstChoise - 1;
+
+    /* Analisa o countClickMudaCor para determinar qual cor aplicar */
+    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClickMudaCor ); /* Procura no array se o a vez do clique é do player one */
+    let cor = '';
+    
+    if( countClickMudaCor == clickPlayerOne){
+        const oneChoise = document.getElementById(`${firstChoise == 0 ? 1 :  firstChoise}`).classList.add('correctGreen');
+        const twoChoise = document.getElementById(`${p}`).classList.add('correctGreen');
+        cor = '#0b771a';
     }
+    else{
+        const oneChoise = document.getElementById(`${firstChoise == 0 ? 1 :  firstChoise}`).classList.add('correctOrange');
+        const twoChoise = document.getElementById(`${p}`).classList.add('correctOrange'); 
+        cor = '#d3660c';
 
+    }
+    countClickMudaCor++;
+    
 
+    /* valida o ponto clicado */
     if (countClick == 1){
         console.log('é valido');
         firstChoise = p;
     }
     else if (p == firstChoise + 1){
         console.log('é valido');
+        document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
+        removerChecked();
         countClick = 0;
     }
     else if (p == firstChoise - 1){
         console.log('é valido');
-        countClick = 0;              
+        document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
+        countClick = 0;      
+        removerChecked();        
     }
     else if (p == firstChoise + 6){
         console.log('é valido');
         countClick = 0;     
+        removerChecked();
     
     }
     else if (p == firstChoise - 6) {
         console.log('é valido');
         countClick = 0;
+        removerChecked();
     }
     else{
         console.log('não é valido')
-        removerChecked(p);
+        removerChecked();
         alert('Selecão inválida!')
     }
 
-    /* Analisa o countClick para determinar a diferença para os jogadores */
-    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClickMudaCor ); /* Procura no array se o a vez do clique é do player one */
-    console.log(clickPlayerOne);
-    
-    if( countClickMudaCor == clickPlayerOne){
-        console.log('tem no array')
-        const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctGreen');
-        const twoChoise = document.getElementById(`${p}`).classList.add('correctGreen');
-    }
-    else{
-        console.log('não tem no array')
-        const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctOrange');
-        const twoChoise = document.getElementById(`${p}`).classList.add('correctOrange'); 
-    }
-    countClickMudaCor++;
-
-    
-    
-    
-
 }
+
+
+
