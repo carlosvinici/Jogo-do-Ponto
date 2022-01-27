@@ -54,10 +54,10 @@ function StartGame() {
 
             /* Cria nossas linhas, em seguida declara suas classes e declara ela como filha de nosso container criado acima */
             if (proxLimite != 36){
-                for (let index = 0; index < 6; index++) {
+                for (let index = 1; index < 7; index++) {
                     const rowDown = document.createElement('span');
                     rowDown.classList.add('defaultRowDown');
-                    rowDown.setAttribute('id', `rowDown${index}`);
+                    rowDown.setAttribute('id', `rowDown${c}${index}`);
                     document.getElementById(`cointainerRow${proxLimite}`).appendChild(rowDown);
                 }
             }
@@ -71,8 +71,10 @@ function StartGame() {
 
 
 /* Validando Escolha */
-let firstChoise = 1;   
-let countClick = 0;
+let firstChoise = 0;   
+let countClick = 0; /* vai alternar entre 1 e 2, ela é o limite de escolha que o jogador pode fazer ao chegar em 2 a comparação é feita entre firstChoise e P  */
+let countClickMudaCor = 1; /* Essa variavel vai trabalha em conjuto com o array para determinar qual jogador jogou, assim diferenciando a cor da linha */
+const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
 
 function ChoiceValidation(p) {
     countClick++
@@ -110,11 +112,11 @@ function ChoiceValidation(p) {
         alert('Selecão inválida!')
     }
 
-    /* Analisa o countClick para determinar a diferença para os jogadores 
-    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClick ); Procura no array se o a vez do clique é do player one
+    /* Analisa o countClick para determinar a diferença para os jogadores */
+    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClickMudaCor ); /* Procura no array se o a vez do clique é do player one */
     console.log(clickPlayerOne);
     
-    if( countClick == clickPlayerOne){
+    if( countClickMudaCor == clickPlayerOne){
         console.log('tem no array')
         const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctGreen');
         const twoChoise = document.getElementById(`${p}`).classList.add('correctGreen');
@@ -124,7 +126,8 @@ function ChoiceValidation(p) {
         const oneChoise = document.getElementById(`${firstChoise}`).classList.add('correctOrange');
         const twoChoise = document.getElementById(`${p}`).classList.add('correctOrange'); 
     }
-*/
+    countClickMudaCor++;
+
     
     
     
