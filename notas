@@ -1,0 +1,20 @@
+Criar uma class que define as info do jogador 
+
+jogador {
+    nome: 'nome inserido dinamicamente',
+    pontos: number,
+    cor: 'cor escolhida pelo jogador'
+}
+
+
+uma class para determinar as regras do jogo 
+
+regras {
+    qtdJogadas: 2,
+    ...
+}
+
+
+
+podemos definir uma chave para cada quadrado do jogo,
+assim ficara facil de manipular a interface.
