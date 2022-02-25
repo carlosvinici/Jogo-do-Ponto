@@ -1,4 +1,7 @@
-Criar uma class que define as info do jogador 
+#criar modulos para difidir funções
+
+
+#Criar uma class que define as info do jogador 
 
 jogador {
     nome: 'nome inserido dinamicamente',
@@ -7,7 +10,7 @@ jogador {
 }
 
 
-uma class para determinar as regras do jogo 
+#uma class para determinar as regras do jogo 
 
 regras {
     qtdJogadas: 2,
@@ -16,5 +19,5 @@ regras {
 
 
 
-podemos definir uma chave para cada quadrado do jogo,
+#podemos definir uma chave para cada quadrado do jogo,
 assim ficara facil de manipular a interface.

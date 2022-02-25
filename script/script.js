@@ -17,13 +17,12 @@ function Template() {
 }
 
 
-/* Gerando template do jogo  */
-let c = 1; /* Count para gerar os <inputs> dentro do while */
-const limite = 6; limite /* representa o numero de colunas sendo limite a ultima coluna */
-let proxLimite = limite;  /* para o script entender que não pode gerar linhas apos o limite, essa variavel vai calcular ao decorrer da execução os pontos de limite */
 
+const limite = 6; limite /* representa o numero de colunas, sendo limite a ultima coluna */
+let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
+let c = 1; 
 function StartGame() {
-    while ( c < 37 ){
+    while ( c <= 36 ){
 
         /* Gerando o input do tipo radio */
         const button = document.createElement('input');
@@ -72,12 +71,10 @@ function StartGame() {
 
 
 let count = 1;
-function removerChecked() {
-    while (count < 37) {
-        let falseChoise = document.getElementById(`${count}`);
-        falseChoise.checked = false;
-        count++;
-    }
+function removerChecked(falseChoise) {
+    /* let falseChoise = document.getElementById(`${count}`); */
+    falseChoise.checked = false;
+/*     count++; */
 
 }
 
@@ -90,7 +87,7 @@ const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26,
 function ChoiceValidation(p) {
     countClick++
 
-    /* maior numero de id  para dar a cor das linhas horizontais*/
+    /* condição para guardar o ultimo ponto escolhido*/
     let maiorNumeroId = 0;
     p > firstChoise 
     ? maiorNumeroId = p - 1
@@ -122,32 +119,29 @@ function ChoiceValidation(p) {
     else if (p == firstChoise + 1){
         console.log('é valido');
         document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
-        removerChecked();
         countClick = 0;
     }
     else if (p == firstChoise - 1){
         console.log('é valido');
         document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
-        countClick = 0;      
-        removerChecked();        
+        countClick = 0;           
     }
     else if (p == firstChoise + 6){
         console.log('é valido');
         countClick = 0;     
-        removerChecked();
     
     }
     else if (p == firstChoise - 6) {
         console.log('é valido');
         countClick = 0;
-        removerChecked();
     }
     else{
         console.log('não é valido')
-        removerChecked();
         alert('Selecão inválida!')
+        removerChecked(p);
     }
 
+    
 }
 
 
