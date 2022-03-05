@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    
+    margin: 0;
+    border: none;
+    padding: 0;
+
+    background-image: linear-gradient(to right top, #204174, #1c4a8b, #1853a3, #125cbb, #0e65d4);}
 main{
     width: 500px;
     height: 500px;
@@ -5,18 +21,41 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 #btn-StartGame {
     padding: 5px 40px;
     margin-top: 20px;
     margin-bottom: 30px;
+    
+    border-radius: 50px;
+    background: #74686800;
+    border: #ffffffd5 solid 2px;
+    color: #dbdfdb;
 }
+
+.gridScore {
+    display: flex;
+    width: 400px;
+    font-size: 0.4rem;
+    justify-content: space-between;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+
+}
+
+
+
+
 #InputsRadio{
     display: inline-block;
     width: 330px;
     height: 370px;
     margin: 0;
     padding: 0;
+
+
 }
 input[type='radio']:after {
     width: 10px;
@@ -29,7 +68,7 @@ input[type='radio']:after {
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 2px solid white;
+    border: 2px solid rgb(255, 255, 255);
 }
 
 input[type='radio']:checked:after {
@@ -39,11 +78,11 @@ input[type='radio']:checked:after {
     top: -2px;
     left: -1px;
     position: relative;
-    background-color: #2f00ffb6;
+    background-color: #2f00ff7c;
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 2px solid white;
+    border: 2px solid rgb(255, 255, 255);
 }
 
 
@@ -60,7 +99,6 @@ input[type='radio']:checked:after {
     margin-left: 4px;
     margin-top: -4px;
     justify-content: space-between;
-
 }
 
 .defaultRowRigth {
@@ -78,11 +116,4 @@ input[type='radio']:checked:after {
     height: 40px;
     background-color: #dbdfdb;
     margin: 0px 5px 0px 5px;
-}
-
-#butao1 {
-    color: #0b771a;
-    position: absolute;
-    margin-top: -500px;
-    padding: 100px;
 }
