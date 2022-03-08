@@ -12,9 +12,9 @@ function Template(scoreGrid = false) {
         button.innerHTML = 'Começar';
         
         /* Gerando <div> para armazenar os inputs radio */
-        const divForInputsRadio = document.createElement('div');
-        main.appendChild(divForInputsRadio);
-        divForInputsRadio.setAttribute('id', 'InputsRadio');
+        const formContainer = document.createElement('form');
+        main.appendChild(formContainer);
+        formContainer.setAttribute('id', 'InputsRadio');
     }
     else {
         const players = document.createElement('div');
@@ -25,8 +25,7 @@ function Template(scoreGrid = false) {
 
 }
 
-
-const limite = 6; limite /* representa o numero de colunas, sendo limite a ultima coluna */
+const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
 let c = 1; 
@@ -89,8 +88,16 @@ function StartGame() {
 
 
 
+function resetChecked(countClick, invalidatedChoice = false){
+    if(countClick == invalidatedChoice){
+        document.getElementById('InputsRadio').reset() 
+    }
+    else if (invalidatedChoice != false){
+        document.getElementById(invalidatedChoice).checked = false; 
+    }
+};
 
-let firstChoise = 0;   
+let firstChoice = 0;   
 let countClick = 0; /* vai alternar entre 1 e 2, ela é o limite de escolha que o jogador pode fazer ao chegar em 2 a comparação é feita entre firstChoise e P  */
 let countClickMudaCor = 1; /* Essa variavel vai trabalha em conjuto com o array para determinar qual jogador jogou, assim diferenciando a cor da linha */
 const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
@@ -100,54 +107,53 @@ function ChoiceValidation(p) {
 
     /* condição para guardar o ultimo ponto escolhido*/
     let maiorNumeroId = 0;
-    p > firstChoise 
+    p > firstChoice 
     ? maiorNumeroId = p - 1
-    : maiorNumeroId = firstChoise - 1;
+    : maiorNumeroId = firstChoice - 1;
 
     /* Analisa o countClickMudaCor para determinar qual cor aplicar */
     const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClickMudaCor ); /* Procura no array se o a vez do clique é do player one */
     let cor = '';
-    
-    countClickMudaCor == clickPlayerOne ? cor = '#0b771a'/* verde */ : cor = '#d3660c'/* laranja */;
-
+    countClickMudaCor == clickPlayerOne
+    ? cor = '#0b771a'/* verde */ 
+    : cor = '#d3660c'/* laranja */;
     countClickMudaCor++;
     
 
     /* valida o ponto clicado e aplica a cor */
-    if (countClick == 1){
-        console.log('é valido');
-        firstChoise = p;
+    const rows = document.getElementById(`row${maiorNumeroId}`);
+    const rowsDown = document.getElementById(`rowDown${p + firstChoice}`);
+    try {
+        if (countClick == 1){
+            firstChoice = p;
+            return;
+        }
+        else if (p == firstChoice + 1 && rows.value != '1'){
+            rows.setAttribute('value', '1');
+            rows.style.backgroundColor = cor;
+        }
+        else if (p == firstChoice - 1){
+            rows.style.backgroundColor = cor;    
+        }
+        else if (p == firstChoice + limite){
+            rowsDown.style.backgroundColor = cor; 
+        }
+        else if (p == firstChoice - limite) {
+            rowsDown.style.backgroundColor = cor;
+        }
+        else{
+            resetChecked(countClick, p); 
+            alert('❌Selecão inválida!❌');
+            countClick--;    
+            return
+        } 
+    } catch (error) {
+        resetChecked(countClick, p); 
+        alert('❌Selecão inválida!❌');
+        countClick--;    
+        return
     }
-    else if (p == firstChoise + 1){
-        console.log('é valido');
-        document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
-        countClick = 0;
 
-    }
-    else if (p == firstChoise - 1){
-        console.log('é valido');
-        document.getElementById(`row${maiorNumeroId}`).style.backgroundColor = cor;
-        countClick = 0;       
-
-    }
-    else if (p == firstChoise + 6){
-        console.log('é valido');
-        document.getElementById(`rowDown${p + firstChoise}`).style.backgroundColor = cor;
-        countClick = 0;     
-    }
-    else if (p == firstChoise - 6) {
-        console.log('é valido');
-        document.getElementById(`rowDown${p + firstChoise}`).style.backgroundColor = cor;
-        countClick = 0;
-    }
-    else{
-        console.log('não é valido');
-        alert('Selecão inválida!');
-        
-    }
-
-    
+    countClick = 0;   
+    resetChecked(countClick); 
 }
-
-
-

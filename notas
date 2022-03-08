@@ -17,7 +17,3 @@ regras {
     ...
 }
 
-
-
-#podemos definir uma chave para cada quadrado do jogo,
-assim ficara facil de manipular a interface.
