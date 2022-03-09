@@ -30,6 +30,10 @@ let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de 
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
 let c = 1; 
 function StartGame() {
+    document.getElementById('btn-StartGame').style.visibility = 'hidden';
+    Template(true);
+
+    
     while ( c <= 36 ){
 
         /* Gerando o input do tipo radio */
@@ -81,8 +85,20 @@ function StartGame() {
         c++;
     };
 
-    document.getElementById('btn-StartGame').style.visibility = 'hidden';
-    Template(true);
+    const containerSquares = document.createElement('div');
+    containerSquares.setAttribute('id', 'containerSquares');
+    main.appendChild(containerSquares);
+
+    let c2 = 1;
+    while (c2 <= 25){
+        const square = document.createElement('div');
+        square.setAttribute('id', `square${c2}`);
+        square.classList.add('squares');
+        containerSquares.appendChild(square);
+        square.innerHTML += 'olá' + c2;
+        c2++
+    }
+
     
 };
 
