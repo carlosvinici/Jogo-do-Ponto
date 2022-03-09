@@ -79,8 +79,20 @@ function StartGame() {
         c++;
     };
 
-    document.getElementById('btn-StartGame').style.visibility = 'hidden';
-    Template(true);
+    const containerSquares = document.createElement('div');
+    containerSquares.setAttribute('id', 'containerSquares');
+    main.appendChild(containerSquares);
+
+    let c2 = 1;
+    while (c2 <= 25){
+        const square = document.createElement('div');
+        square.setAttribute('id', `square${c2}`);
+        square.classList.add('squares');
+        containerSquares.appendChild(square);
+        square.innerHTML += 'olá' + c2;
+        c2++
+    }
+
     
 };
 
