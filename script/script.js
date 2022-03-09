@@ -11,6 +11,7 @@ function Template(scoreGrid = false) {
         button.innerHTML = 'Começar';
     }
     else {
+        document.getElementById('btn-StartGame').style.visibility = 'hidden';
         const players = document.createElement('div');
         main.appendChild(players);
         players.setAttribute('class', 'gridScore')
@@ -22,19 +23,35 @@ function Template(scoreGrid = false) {
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
-let c = 1; 
+
 function StartGame() {
+    Template(true)
+    const containerSquares = document.createElement('div');
+    containerSquares.setAttribute('id', 'containerSquares');
+    main.appendChild(containerSquares);
+
+    let countSquare = 1;
+    while (countSquare <= 25){
+        const square = document.createElement('div');
+        square.setAttribute('id', `square${countSquare}`);
+        square.classList.add('squares');
+        containerSquares.appendChild(square);
+        countSquare++
+    }
+    
     /* Gerando <div> para armazenar os inputs radio */
     const formContainer = document.createElement('form');
     main.appendChild(formContainer);
     formContainer.setAttribute('id', 'InputsRadio');
-    while ( c <= 36 ){
+
+    let countInput = 1; 
+    while ( countInput <= 36 ){
 
         /* Gerando o input do tipo radio */
         const button = document.createElement('input');
         button.setAttribute('type', 'radio')
-        button.setAttribute('onclick', `ChoiceValidation(${c})`)
-        button.setAttribute('id', c)
+        button.setAttribute('onclick', `ChoiceValidation(${countInput})`)
+        button.setAttribute('id', countInput)
         button.classList.add('buttonPonto')
         document.getElementById('InputsRadio').appendChild(button);
 
@@ -42,10 +59,10 @@ function StartGame() {
         /* Gerando Linha para ligar os pontos <imput> */
 
         /* A DIREITA */
-        if( c != proxLimite ){
+        if( countInput != proxLimite ){
             const rowRight = document.createElement('span');
             rowRight.classList.add('defaultRowRigth');
-            rowRight.setAttribute('id', `row${c}`)
+            rowRight.setAttribute('id', `row${countInput}`)
             document.getElementById('InputsRadio').appendChild(rowRight);
         }
         /* A BAIXO */
@@ -76,24 +93,8 @@ function StartGame() {
             
         };
         
-        c++;
+        countInput++;
     };
-
-    const containerSquares = document.createElement('div');
-    containerSquares.setAttribute('id', 'containerSquares');
-    main.appendChild(containerSquares);
-
-    let c2 = 1;
-    while (c2 <= 25){
-        const square = document.createElement('div');
-        square.setAttribute('id', `square${c2}`);
-        square.classList.add('squares');
-        containerSquares.appendChild(square);
-        square.innerHTML += 'olá' + c2;
-        c2++
-    }
-
-    
 };
 
 
@@ -138,9 +139,15 @@ function ChoiceValidation(p) {
             firstChoice = p;
             return;
         }
-        else if (p == firstChoice + 1 && rows.value != '1'){
+        else if (p == firstChoice){
+            resetChecked(countClick, p); 
+            countClick=0;    
+            return
+        }
+        else if (p == firstChoice + 1 & rows.value != '1'){
             rows.setAttribute('value', '1');
             rows.style.backgroundColor = cor;
+            console.log(rows.value)
         }
         else if (p == firstChoice - 1){
             rows.style.backgroundColor = cor;    
