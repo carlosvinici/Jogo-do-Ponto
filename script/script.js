@@ -2,7 +2,6 @@
 const main = document.getElementById('root');
 
 function Template(scoreGrid = false) {
-
     if (scoreGrid == false) {
         /* Gerando Botão de Start */
         const button = document.createElement('button');
@@ -10,11 +9,6 @@ function Template(scoreGrid = false) {
         button.setAttribute('onclick', 'StartGame()');
         button.setAttribute('id', 'btn-StartGame')
         button.innerHTML = 'Começar';
-        
-        /* Gerando <div> para armazenar os inputs radio */
-        const formContainer = document.createElement('form');
-        main.appendChild(formContainer);
-        formContainer.setAttribute('id', 'InputsRadio');
     }
     else {
         const players = document.createElement('div');
@@ -30,6 +24,10 @@ let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de 
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
 let c = 1; 
 function StartGame() {
+    /* Gerando <div> para armazenar os inputs radio */
+    const formContainer = document.createElement('form');
+    main.appendChild(formContainer);
+    formContainer.setAttribute('id', 'InputsRadio');
     while ( c <= 36 ){
 
         /* Gerando o input do tipo radio */
