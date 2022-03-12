@@ -81,30 +81,14 @@ main{
     margin: 0;
     padding: 0;
     z-index: 1;
-
+    align-items: center;
+    justify-content: center;
 }
-input[type='radio']:after {
-    width: 10px;
-    height: 10px;
-    border-radius: 15px;
-    position: relative;
-    background-color: #d1d3d1;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid rgb(255, 255, 255);
-}
-
-input[type='radio']:checked:after {
-    width: 10px;
-    height: 10px;
-    border-radius: 15px;
-    position: relative;
-    background-color: #2f00ff7c;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid rgb(255, 255, 255);
+input[type='radio']{
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(209, 213, 219, 0.144) 0px 0px 0px 1px inset;
 }
 
 .squares {
@@ -120,8 +104,8 @@ input[type='radio']:checked:after {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
     margin-top: 88px;
-    width: 299px;
-    height: 277px;
+    width: 310px;
+    height: 310px;
 
     position: absolute;
     align-items: center;
@@ -140,16 +124,15 @@ input[type='radio']:checked:after {
 
 .containerRowsDown{
     display: flex;
-    width: 318px;
-    margin-left: 4px;
-    margin-top: -4px;
+    width: 317.6px;
     justify-content: space-between;
 }
 
 .defaultRowRigth {
     display: inline-block;
-    margin: 0px -3px 5px -3px;
-    width: 46px;
+    margin: 0;
+    padding: 0;
+    width: 50px;
     height: 4px;
     background-color: #dbdfdb91;
     
@@ -158,7 +141,7 @@ input[type='radio']:checked:after {
 .defaultRowDown {
     display: inline-block;
     width: 4px;
-    height: 40px;
+    height: 50px;
     background-color: #dbdfdb91;
-    margin: 0px 5px 0px 5px;
+    padding: 0;
 }

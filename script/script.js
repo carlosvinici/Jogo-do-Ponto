@@ -141,10 +141,11 @@ function ChoiceValidation(p) {
         }
         else if (p == firstChoice){
             resetChecked(countClick, p); 
-            countClick=0;    
+            countClick=0;
+            firstChoice=0;    
             return
         }
-        else if (p == firstChoice + 1 & rows.value != '1'){
+        else if (p == firstChoice + 1){
             rows.setAttribute('value', '1');
             rows.style.backgroundColor = cor;
             console.log(rows.value)
