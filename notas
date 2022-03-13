@@ -1,4 +1,19 @@
-#criar modulos para difidir funções
+#guarda escolhas dos jogadores, para que não seja possivel repetir movimentos
+
+posso passar o valor para a tag value ou
+
+
+banco de dados
+
+1 campo para armazenar os pontos de cada jogador 
+
+1 campo para autenticar movimentos repetidos 
+
+posso passar um valor padrão para a tag value em cada row e se a row for escolhida, um novo valor vai ser atribuida a tag, assim 
+posso adiocionar na condição a verificação se a tag value está com o valor padrão ou um valor ja atribuido,
+
+posso colocar tambem nesse novo valor o ID do jogador, assim da para contar quantos movimentos ele executo durante o game,
+e também para saber qual jogador fechou o quadrado, marcando seu ponto.
 
 
 #Criar uma class que define as info do jogador 

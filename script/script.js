@@ -98,8 +98,18 @@ function StartGame() {
 };
 
 
+let countClickMudaCor = 0; /* Essa variavel vai trabalha em conjuto com o array para determinar qual jogador jogou, assim diferenciando a cor da linha */
+function ApplyingColor() {
+    countClickMudaCor++; 
 
-function resetChecked(countClick, invalidatedChoice = false){
+    let cor = '';
+    countClickMudaCor % 2 == 0
+    ? cor = '#0b771a'/* verde */ 
+    : cor = '#d3660c'/* laranja */;
+    
+    return cor;
+}
+function ResetChecked(countClick, invalidatedChoice = false){
     if(countClick == invalidatedChoice){
         document.getElementById('InputsRadio').reset() 
     }
@@ -108,70 +118,52 @@ function resetChecked(countClick, invalidatedChoice = false){
     }
 };
 
+
 let firstChoice = 0;   
 let countClick = 0; /* vai alternar entre 1 e 2, ela é o limite de escolha que o jogador pode fazer ao chegar em 2 a comparação é feita entre firstChoise e P  */
-let countClickMudaCor = 1; /* Essa variavel vai trabalha em conjuto com o array para determinar qual jogador jogou, assim diferenciando a cor da linha */
-const orderClicksPlayerOne = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34];  /* ordem de clique do primeiro jogador */
-
 function ChoiceValidation(p) {
     countClick++
 
-    /* condição para guardar o ultimo ponto escolhido*/
-    let maiorNumeroId = 0;
-    p > firstChoice 
-    ? maiorNumeroId = p - 1
-    : maiorNumeroId = firstChoice - 1;
-
-    /* Analisa o countClickMudaCor para determinar qual cor aplicar */
-    const clickPlayerOne = orderClicksPlayerOne.find( click => click == countClickMudaCor ); /* Procura no array se o a vez do clique é do player one */
-    let cor = '';
-    countClickMudaCor == clickPlayerOne
-    ? cor = '#0b771a'/* verde */ 
-    : cor = '#d3660c'/* laranja */;
-    countClickMudaCor++;
-    
-
-    /* valida o ponto clicado e aplica a cor */
-    const rows = document.getElementById(`row${maiorNumeroId}`);
+    const rows = document.getElementById(`row${ p > firstChoice ? p - 1 : firstChoice - 1 }`);
     const rowsDown = document.getElementById(`rowDown${p + firstChoice}`);
+
     try {
         if (countClick == 1){
             firstChoice = p;
             return;
         }
         else if (p == firstChoice){
-            resetChecked(countClick, p); 
+            ResetChecked(countClick, p); 
             countClick=0;
             firstChoice=0;    
             return
         }
         else if (p == firstChoice + 1){
-            rows.setAttribute('value', '1');
-            rows.style.backgroundColor = cor;
-            console.log(rows.value)
+            rows.style.backgroundColor = ApplyingColor();
         }
         else if (p == firstChoice - 1){
-            rows.style.backgroundColor = cor;    
+            rows.style.backgroundColor = ApplyingColor();    
         }
         else if (p == firstChoice + limite){
-            rowsDown.style.backgroundColor = cor; 
+            rowsDown.style.backgroundColor = ApplyingColor(); 
         }
         else if (p == firstChoice - limite) {
-            rowsDown.style.backgroundColor = cor;
+            rowsDown.style.backgroundColor = ApplyingColor();
         }
         else{
-            resetChecked(countClick, p); 
+            ResetChecked(countClick, p); 
             alert('❌Selecão inválida!❌');
             countClick--;    
             return
         } 
     } catch (error) {
-        resetChecked(countClick, p); 
+        ResetChecked(countClick, p); 
         alert('❌Selecão inválida!❌');
         countClick--;    
         return
     }
 
     countClick = 0;   
-    resetChecked(countClick); 
+    ResetChecked(countClick); 
 }
+
