@@ -1,6 +1,5 @@
 /* Definindo template */
 const main = document.getElementById('root');
-
 function Template(scoreGrid = false) {
     if (scoreGrid == false) {
         /* Gerando Botão de Start */
@@ -20,10 +19,10 @@ function Template(scoreGrid = false) {
 
 }
 
+
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
-
 function StartGame() {
     Template(true)
     const containerSquares = document.createElement('div');
@@ -98,17 +97,24 @@ function StartGame() {
 };
 
 
-let countClickMudaCor = 0; /* Essa variavel vai trabalha em conjuto com o array para determinar qual jogador jogou, assim diferenciando a cor da linha */
-function ApplyingColor() {
-    countClickMudaCor++; 
+let countPlayerChoice = 0; 
+function WhoPlays() {
+    countPlayerChoice++; 
+    let player = '';
+    countPlayerChoice % 2 == 0
+    ? player = 'two' 
+    : player = 'one';
 
-    let cor = '';
-    countClickMudaCor % 2 == 0
-    ? cor = '#0b771a'/* verde */ 
-    : cor = '#d3660c'/* laranja */;
-    
-    return cor;
+    return player;
 }
+
+function ApplyingColor(player) {
+    player == 'one'
+    ? color = '#0b771a'
+    : color = '#d3660c' 
+    return color;
+}
+
 function ResetChecked(countClick, invalidatedChoice = false){
     if(countClick == invalidatedChoice){
         document.getElementById('InputsRadio').reset() 
@@ -127,41 +133,48 @@ function ChoiceValidation(p) {
     const rows = document.getElementById(`row${ p > firstChoice ? p - 1 : firstChoice - 1 }`);
     const rowsDown = document.getElementById(`rowDown${p + firstChoice}`);
 
-    try {
-        if (countClick == 1){
-            firstChoice = p;
-            return;
-        }
-        else if (p == firstChoice){
-            ResetChecked(countClick, p); 
-            countClick=0;
-            firstChoice=0;    
-            return
-        }
-        else if (p == firstChoice + 1){
-            rows.style.backgroundColor = ApplyingColor();
-        }
-        else if (p == firstChoice - 1){
-            rows.style.backgroundColor = ApplyingColor();    
-        }
-        else if (p == firstChoice + limite){
-            rowsDown.style.backgroundColor = ApplyingColor(); 
-        }
-        else if (p == firstChoice - limite) {
-            rowsDown.style.backgroundColor = ApplyingColor();
-        }
-        else{
+
+    if (countClick == 1){
+        firstChoice = p;
+        return;
+    }
+    else if (p == firstChoice){
+        ResetChecked(countClick, p); 
+        countClick=0;
+        firstChoice=0;    
+        return
+    }
+    else {
+        try {
+            if (p == firstChoice + 1 ){
+                let player = WhoPlays();
+                rows.style.backgroundColor = ApplyingColor(player);
+            }
+            else if (p == firstChoice - 1){
+                let player = WhoPlays();
+                rows.style.backgroundColor = ApplyingColor(player);    
+            }
+            else if (p == firstChoice + limite){
+                let player = WhoPlays();
+                rowsDown.style.backgroundColor = ApplyingColor(player); 
+            } 
+            else if (p == firstChoice - limite) {
+                let player = WhoPlays();
+                rowsDown.style.backgroundColor = ApplyingColor(player);
+            }
+            else{
+                ResetChecked(countClick, p); 
+                alert('❌Selecão inválida!❌');
+                countClick--;    
+                return
+            } 
+        } catch (error) {
             ResetChecked(countClick, p); 
             alert('❌Selecão inválida!❌');
             countClick--;    
             return
-        } 
-    } catch (error) {
-        ResetChecked(countClick, p); 
-        alert('❌Selecão inválida!❌');
-        countClick--;    
-        return
-    }
+        }
+    } 
 
     countClick = 0;   
     ResetChecked(countClick); 
