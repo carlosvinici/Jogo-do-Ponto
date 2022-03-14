@@ -147,20 +147,16 @@ function ChoiceValidation(p) {
     else {
         try {
             if (p == firstChoice + 1 ){
-                let player = WhoPlays();
-                rows.style.backgroundColor = ApplyingColor(player);
+                rows.style.backgroundColor = ApplyingColor(WhoPlays());
             }
             else if (p == firstChoice - 1){
-                let player = WhoPlays();
-                rows.style.backgroundColor = ApplyingColor(player);    
+                rows.style.backgroundColor = ApplyingColor(WhoPlays());    
             }
             else if (p == firstChoice + limite){
-                let player = WhoPlays();
-                rowsDown.style.backgroundColor = ApplyingColor(player); 
+                rowsDown.style.backgroundColor = ApplyingColor(WhoPlays()); 
             } 
             else if (p == firstChoice - limite) {
-                let player = WhoPlays();
-                rowsDown.style.backgroundColor = ApplyingColor(player);
+                rowsDown.style.backgroundColor = ApplyingColor(WhoPlays());
             }
             else{
                 ResetChecked(countClick, p); 
