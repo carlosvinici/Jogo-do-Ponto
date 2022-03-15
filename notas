@@ -5,6 +5,12 @@ posso passar o valor para a tag value ou
 
 banco de dados
 
+algoritmo para pontuação
+ao ser validada a escolha, ela vai ser armazenada no BD para ser comparada as novas escolhas bloqueando as repetidas, o square vai ficar escutando o BD para que quando a sua sequencia estiver completa o quadrado seja colorido com a cor do jogador marcador do ponto. 
+
+
+
+
 1 campo para armazenar os pontos de cada jogador 
 
 1 campo para autenticar movimentos repetidos 
