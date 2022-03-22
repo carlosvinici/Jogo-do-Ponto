@@ -22,6 +22,18 @@ posso colocar tambem nesse novo valor o ID do jogador, assim da para contar quan
 e também para saber qual jogador fechou o quadrado, marcando seu ponto.
 
 
+1º Atribuir a tag value nos row, e fazer o codigo interagir com a mesma, impedindo que os movimentos sejam repetidos.
+
+2º Criar uma formula para o codigo saber qual é os pontos que formam um quadrado.
+-A formula é: F = 1-2-1-2
+O primeiro quadrado vai ter como esquema o padrão A = 1-10-7-8 e os demais vai ser B = A + F,
+C =  B + F, D = C + F ....
+O código jogar as escolhas validas no BD e esperar as escolhas formarem algum dos esquemas estabelecios para cada quadrado de acordo com a formula.
+
+3º Criar uma função que escuta os movimentos, sabendo assim, qual jogador fechou o quadrado.
+
+
+
 #Criar uma class que define as info do jogador 
 
 jogador {
