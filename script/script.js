@@ -20,6 +20,12 @@ function Template(scoreGrid = false) {
 }
 
 
+let keySquares = {
+    
+}
+
+console.log(keySquares);
+
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
@@ -30,12 +36,16 @@ function StartGame() {
     main.appendChild(containerSquares);
 
     let countSquare = 1;
+    let squareKey = 0;
     while (countSquare <= 25){
         const square = document.createElement('div');
         square.setAttribute('id', `square${countSquare}`);
         square.classList.add('squares');
         containerSquares.appendChild(square);
+
+        keySquares[`${countSquare}`] = [countSquare, 10 + 2 * squareKey, 7 + squareKey, 8 + 2 * squareKey]
         countSquare++
+        squareKey++
     }
     
     /* Gerando <div> para armazenar os inputs radio */
