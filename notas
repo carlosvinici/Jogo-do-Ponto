@@ -31,7 +31,20 @@ C =  B + F, D = C + F ....
 O código jogar as escolhas validas no BD e esperar as escolhas formarem algum dos esquemas estabelecios para cada quadrado de acordo com a formula.
 
 3º Criar uma função que escuta os movimentos, sabendo assim, qual jogador fechou o quadrado.
+-   const obj = {
+  "column01": "Coluna 01",
+  "column02": "Coluna 02"
+};
 
+Object.keys(obj).forEach((item) => {
+  console.log(item + " = " + obj[item]);
+});
+
+for (const property in obj) {
+  console.log(property + " = " + obj[property]);
+}
+
+com esse metodo podemos pecorrer o obejto com os arrays e com isso podemos retirar os ids das rows escolhidas de dentro do array, quando o array perder os quatro elementos ele vai disparar uma function que vai atribui os pontos ao jogador marcador.
 
 
 #Criar uma class que define as info do jogador 
