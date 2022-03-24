@@ -31,19 +31,29 @@ let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de 
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
 function StartGame() {
     Template(true)
+    localStorage.clear();
+    
     const containerSquares = document.createElement('div');
     containerSquares.setAttribute('id', 'containerSquares');
     main.appendChild(containerSquares);
-
     let countSquare = 1;
     let squareKey = 0;
+    let IdAssistant = 6;
+    let formulaIdA = 10;
+    let formulaIdB = 8;
     while (countSquare <= 25){
         const square = document.createElement('div');
         square.setAttribute('id', `square${countSquare}`);
         square.classList.add('squares');
         containerSquares.appendChild(square);
 
-        keySquares[`${countSquare}`] = [countSquare, 10 + 2 * squareKey, 7 + squareKey, 8 + 2 * squareKey]
+        if (IdAssistant == countSquare) {
+            formulaIdA = formulaIdA + 2;
+            formulaIdB = formulaIdB + 2;
+            IdAssistant = IdAssistant + 6;
+        }
+    
+        keySquares[`${countSquare}`] =  [countSquare, formulaIdA + 2 * squareKey, 6 + squareKey, formulaIdB + 2 * squareKey]
         countSquare++
         squareKey++
     }
@@ -53,6 +63,7 @@ function StartGame() {
     main.appendChild(formContainer);
     formContainer.setAttribute('id', 'InputsRadio');
 
+    let countIdRow = 1;
     let countInput = 1; 
     while ( countInput <= 36 ){
 
@@ -71,8 +82,13 @@ function StartGame() {
         if( countInput != proxLimite ){
             const rowRight = document.createElement('span');
             rowRight.classList.add('defaultRowRigth');
-            rowRight.setAttribute('id', `row${countInput}`)
+            rowRight.setAttribute('id', `row${countIdRow}`)
             document.getElementById('InputsRadio').appendChild(rowRight);
+            rowRight.innerHTML= countIdRow ;
+            rowRight.style.textAlign = 'center';
+            rowRight.style.color = '#ffffff'
+
+            countIdRow++;
         }
         /* A BAIXO */
         else {
@@ -92,10 +108,14 @@ function StartGame() {
                 };
 
                 for (let index = 1; index <= 6; index++) {
+                    let idRowDown  = declaraId();
                     const rowDown = document.createElement('span');
                     rowDown.classList.add('defaultRowDown');
-                    rowDown.setAttribute('id', `rowDown${declaraId()}`);
+                    rowDown.setAttribute('id', `rowDown${idRowDown}`);
                     document.getElementById(`cointainerRow${proxLimite}`).appendChild(rowDown);
+                    rowDown.innerHTML= '<p>' + idRowDown + '<p>';
+                    rowDown.style.textAlign = 'center';
+                    rowDown.style.color = '#ffffff';
                 };
             };
             proxLimite = proxLimite + limite; /* Calcula o proximo limite */
@@ -137,45 +157,51 @@ function ResetChecked(countClick, invalidatedChoice = false){
 
 let firstChoice = 0;   
 let countClick = 0; /* vai alternar entre 1 e 2, ela é o limite de escolha que o jogador pode fazer ao chegar em 2 a comparação é feita entre firstChoise e P  */
-function ChoiceValidation(p) {
+function ChoiceValidation(clickedPoint) {
     countClick++
 
-    const rows = document.getElementById(`row${ p > firstChoice ? p - 1 : firstChoice - 1 }`);
-    const rowsDown = document.getElementById(`rowDown${p + firstChoice}`);
-
+    let rowId = clickedPoint > firstChoice ? clickedPoint - 1 : firstChoice - 1;
+    let rowDownId = clickedPoint + firstChoice;
+    const rows = document.getElementById(`row${ rowId }`);
+    const rowsDown = document.getElementById(`rowDown${ rowDownId }`);
+    
 
     if (countClick == 1){
-        firstChoice = p;
+        firstChoice = clickedPoint;
         return;
     }
-    else if (p == firstChoice){
-        ResetChecked(countClick, p); 
+    else if (clickedPoint == firstChoice){
+        ResetChecked(countClick, clickedPoint); 
         countClick=0;
         firstChoice=0;    
         return
     }
     else {
         try {
-            if (p == firstChoice + 1 ){
+            if (clickedPoint == firstChoice + 1 ){
                 rows.style.backgroundColor = ApplyingColor(WhoPlays());
+                localStorage.setItem('moved', `${rowId}`)
             }
-            else if (p == firstChoice - 1){
+            else if (clickedPoint == firstChoice - 1){
                 rows.style.backgroundColor = ApplyingColor(WhoPlays());    
+                localStorage.setItem('moved', `${rowId}`)
             }
-            else if (p == firstChoice + limite){
+            else if (clickedPoint == firstChoice + limite){
                 rowsDown.style.backgroundColor = ApplyingColor(WhoPlays()); 
+                localStorage.setItem('moved', `${rowDownId}`)
             } 
-            else if (p == firstChoice - limite) {
+            else if (clickedPoint == firstChoice - limite) {
                 rowsDown.style.backgroundColor = ApplyingColor(WhoPlays());
+                localStorage.setItem('moved', `${rowDownId}`)
             }
             else{
-                ResetChecked(countClick, p); 
+                ResetChecked(countClick, clickedPoint); 
                 alert('❌Selecão inválida!❌');
                 countClick--;    
                 return
             } 
         } catch (error) {
-            ResetChecked(countClick, p); 
+            ResetChecked(countClick, clickedPoint); 
             alert('❌Selecão inválida!❌');
             countClick--;    
             return
