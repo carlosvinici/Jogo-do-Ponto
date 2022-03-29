@@ -177,7 +177,6 @@ function ChoiceValidation(clickedPoint) {
     const rows = document.getElementById(`row${ rowId }`);
     const rowsDown = document.getElementById(`rowDown${ rowDownId }`);
 
-    ValidatingRepeatedMovement(rowId)
     if (clickedPoint == firstChoice){
         ResetChecked(countClick, clickedPoint); 
         countClick=0;

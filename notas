@@ -1,64 +1,35 @@
 
-posso passar o valor para a tag value ou
-
-
-banco de dados
-
-algoritmo para pontuação
-ao ser validada a escolha, ela vai ser armazenada no BD para ser comparada as novas escolhas bloqueando as repetidas, o square vai ficar escutando o BD para que quando a sua sequencia estiver completa o quadrado seja colorido com a cor do jogador marcador do ponto. 
-
-
-
-
-1 campo para armazenar os pontos de cada jogador 
-
-1 campo para autenticar movimentos repetidos 
-
-posso passar um valor padrão para a tag value em cada row e se a row for escolhida, um novo valor vai ser atribuida a tag, assim 
-posso adiocionar na condição a verificação se a tag value está com o valor padrão ou um valor ja atribuido,
-
-posso colocar tambem nesse novo valor o ID do jogador, assim da para contar quantos movimentos ele executo durante o game,
-e também para saber qual jogador fechou o quadrado, marcando seu ponto.
-
-
-1º Atribuir a tag value nos row, e fazer o codigo interagir com a mesma, impedindo que os movimentos sejam repetidos.
-
-2º Criar uma formula para o codigo saber qual é os pontos que formam um quadrado.
+1º Criar uma formula para o codigo saber qual é os pontos que formam um quadrado.
 -A formula é: F = 1-2-1-2
 O primeiro quadrado vai ter como esquema o padrão A = 1-10-7-8 e os demais vai ser B = A + F,
 C =  B + F, D = C + F ....
 O código jogar as escolhas validas no BD e esperar as escolhas formarem algum dos esquemas estabelecios para cada quadrado de acordo com a formula.
 
-3º Criar uma função que escuta os movimentos, sabendo assim, qual jogador fechou o quadrado.
--   const obj = {
-  "column01": "Coluna 01",
-  "column02": "Coluna 02"
-};
 
-Object.keys(obj).forEach((item) => {
-  console.log(item + " = " + obj[item]);
-});
-
-for (const property in obj) {
-  console.log(property + " = " + obj[property]);
+2º Criar uma função que escuta os movimentos, sabendo assim, qual jogador fechou o quadrado.
+-Algoritmo que vai fazer a comparação dos movimentos
+let keySquares = {
+  1: {
+    key: [1,2,3,4], 
+    moved: 1,
+  }, 
+  2: {
+    key: [5,6,7,8], 
+    moved: 1,
+  }
 }
 
-com esse metodo podemos pecorrer o obejto com os arrays e com isso podemos retirar os ids das rows escolhidas de dentro do array, quando o array perder os quatro elementos ele vai disparar uma function que vai atribui os pontos ao jogador marcador.
-
-
-#Criar uma class que define as info do jogador 
-
-jogador {
-    nome: 'nome inserido dinamicamente',
-    pontos: number,
-    cor: 'cor escolhida pelo jogador'
+function CheckingSquare(params) {
+	for (let index = 1; index <= 2; index++){
+    	console.log(keySquares[index].key.includes(params))
+      
+      if(keySquares[index].key.includes(params)){
+        keySquares[index].moved++;
+      }
+    }
+        
 }
 
-
-#uma class para determinar as regras do jogo 
-
-regras {
-    qtdJogadas: 2,
-    ...
-}
+CheckingSquare()
+console.log(`moved 1: ${keySquares[1].moved}. moved 2: ${keySquares[2].moved}`)
 
