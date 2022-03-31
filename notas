@@ -25,6 +25,9 @@ function CheckingSquare(params) {
       
       if(keySquares[index].key.includes(params)){
         keySquares[index].moved++;
+        if( keySquares[index].moved == 4){
+          console.log('pinta square')
+        }
       }
     }
         
