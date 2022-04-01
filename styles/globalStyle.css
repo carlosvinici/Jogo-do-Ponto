@@ -92,9 +92,8 @@ input[type='radio']{
 }
 
 .squares {
-    background-color: #6dec7e17;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     padding: 0;
 }
 
@@ -103,9 +102,9 @@ input[type='radio']{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
-    margin-top: 88px;
-    width: 310px;
-    height: 310px;
+    margin-top: 84px;
+    width: 312px;;
+    height: 315px;;
 
     position: absolute;
     align-items: center;

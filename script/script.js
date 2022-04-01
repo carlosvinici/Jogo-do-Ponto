@@ -19,10 +19,7 @@ function Template(scoreGrid = false) {
 
 }
 
-
-let keySquares = {}
-console.log(keySquares);
-
+let keySquares={};
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
@@ -30,6 +27,8 @@ function StartGame() {
     Template(true)
     localStorage.clear();
     
+    
+
     const containerSquares = document.createElement('div');
     containerSquares.setAttribute('id', 'containerSquares');
     main.appendChild(containerSquares);
@@ -41,7 +40,10 @@ function StartGame() {
         square.classList.add('squares');
         containerSquares.appendChild(square);
 
-        keySquares[`${countSquare}`] =  [countSquare + formulaIdC, formulaIdA + 2 * squareKey, formulaD + squareKey, formulaIdB + 2 * squareKey]
+        keySquares[`${countSquare}`] = {
+            key: [(countSquare + formulaIdC)*100, formulaIdA + 2 * squareKey, (formulaD + squareKey)*100, formulaIdB + 2 * squareKey],
+            hits: 0 
+        };
 
         if (IdAssistant == countSquare) {
             formulaIdA = formulaIdA + 2;
@@ -53,7 +55,6 @@ function StartGame() {
         countSquare++
         squareKey++
     }
-    
     /* Gerando <div> para armazenar os inputs radio */
     const formContainer = document.createElement('form');
     main.appendChild(formContainer);
@@ -77,12 +78,8 @@ function StartGame() {
         if( countInput != proxLimite ){
             const rowRight = document.createElement('span');
             rowRight.classList.add('defaultRowRigth');
-            rowRight.setAttribute('id', `row${countInput}`)
+            rowRight.setAttribute('id', `row${countInput*100}`)
             document.getElementById('InputsRadio').appendChild(rowRight);
-            rowRight.innerHTML= countInput ;
-            rowRight.style.textAlign = 'center';
-            rowRight.style.color = '#ffffff'
-
         }
         /* A BAIXO */
         else {
@@ -107,9 +104,6 @@ function StartGame() {
                     rowDown.classList.add('defaultRowDown');
                     rowDown.setAttribute('id', `rowDown${idRowDown}`);
                     document.getElementById(`cointainerRow${proxLimite}`).appendChild(rowDown);
-                    rowDown.innerHTML= '<p>' + idRowDown + '<p>';
-                    rowDown.style.textAlign = 'center';
-                    rowDown.style.color = '#ffffff';
                 };
             };
             proxLimite = proxLimite + limite; /* Calcula o proximo limite */
@@ -133,9 +127,7 @@ function WhoPlays() {
 }
 
 function ApplyingColor(player) {
-    player == 'one'
-    ? color = '#0b771a'
-    : color = '#d3660c' 
+    var color = player == 'one' ? '#0b771a' : '#d3660c';
     return color;
 }
 
@@ -147,6 +139,19 @@ function ResetChecked(countClick, invalidatedChoice = false){
         document.getElementById(invalidatedChoice).checked = false; 
     }
 };
+
+
+function CheckingSquare(id, color) {
+	for (let index = 1; index <= 25; index++){
+      if(keySquares[index].key.includes(id)){
+        keySquares[index].hits++;
+        if( keySquares[index].hits == 4){
+          document.getElementById(`square${index}`).style.background = color;
+        }
+      }
+    }
+        
+}
 
 
 let storingKey = [];
@@ -172,7 +177,7 @@ function ChoiceValidation(clickedPoint) {
         return;
     }
     
-    let rowId = clickedPoint > firstChoice ? clickedPoint - 1 : firstChoice - 1;
+    let rowId = clickedPoint > firstChoice ? (clickedPoint - 1)*100 : (firstChoice - 1)*100;
     let rowDownId = clickedPoint + firstChoice;
     const rows = document.getElementById(`row${ rowId }`);
     const rowsDown = document.getElementById(`rowDown${ rowDownId }`);
@@ -186,19 +191,27 @@ function ChoiceValidation(clickedPoint) {
     else {
         try {
             if (clickedPoint == firstChoice + 1 & ValidatingRepeatedMovement(rowId)){
-                rows.style.backgroundColor = ApplyingColor(WhoPlays());
+                let colors = ApplyingColor(WhoPlays())
+                rows.style.backgroundColor = colors;
+                CheckingSquare(rowId, colors)
                 StoringKey(rowId);
             }
             else if (clickedPoint == firstChoice - 1 & ValidatingRepeatedMovement(rowId)){
-                rows.style.backgroundColor = ApplyingColor(WhoPlays());    
+                let colors = ApplyingColor(WhoPlays())
+                rows.style.backgroundColor = colors;
+                CheckingSquare(rowId, colors)
                 StoringKey(rowId);
             }
             else if (clickedPoint == firstChoice + limite & ValidatingRepeatedMovement(rowDownId)){
-                rowsDown.style.backgroundColor = ApplyingColor(WhoPlays()); 
+                let colors = ApplyingColor(WhoPlays());
+                rowsDown.style.backgroundColor = colors; 
+                CheckingSquare(rowDownId, colors)
                 StoringKey(rowDownId);
             } 
             else if (clickedPoint == firstChoice - limite & ValidatingRepeatedMovement(rowDownId)) {
-                rowsDown.style.backgroundColor = ApplyingColor(WhoPlays());
+                let colors = ApplyingColor(WhoPlays());
+                rowsDown.style.backgroundColor = colors; 
+                CheckingSquare(rowDownId, colors)
                 StoringKey(rowDownId);
             }
             else{
