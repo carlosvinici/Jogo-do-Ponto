@@ -1,7 +1,12 @@
 /* Definindo template */
 const main = document.getElementById('root');
-function Template(scoreGrid = false) {
-    if (scoreGrid == false) {
+let dataPlayer = {
+    'one' : { score: 0, name: 'player One'},
+    'two' : { score: 0, name: 'player Two'}
+};
+
+function Template(scoreGrid = false, score) {
+    if (!scoreGrid) {
         /* Gerando Botão de Start */
         const button = document.createElement('button');
         main.appendChild(button);
@@ -11,10 +16,6 @@ function Template(scoreGrid = false) {
     }
     else {
         document.getElementById('btn-StartGame').style.visibility = 'hidden';
-        const players = document.createElement('div');
-        main.appendChild(players);
-        players.setAttribute('class', 'gridScore')
-        players.innerHTML = '<h1>PlayerOne: 0 </h1><h1>PlayerTwo: 0 </h1>';
     }
 
 }
@@ -24,7 +25,7 @@ const limite = 6;  /* representa o numero de colunas, sendo limite a ultima colu
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
 function StartGame() {
-    Template(true)
+    Template(scoreGrid = true)
     localStorage.clear();
     
     
@@ -141,12 +142,15 @@ function ResetChecked(countClick, invalidatedChoice = false){
 };
 
 
-function CheckingSquare(id, color) {
+function CheckingSquare(id, color, whoPlayer) {
+    console.log(typeof(whoPlayer))
 	for (let index = 1; index <= 25; index++){
       if(keySquares[index].key.includes(id)){
         keySquares[index].hits++;
         if( keySquares[index].hits == 4){
           document.getElementById(`square${index}`).style.background = color;
+          let score = dataPlayer[whoPlayer].score++;
+          Template(score)
         }
       }
     }
@@ -191,27 +195,31 @@ function ChoiceValidation(clickedPoint) {
     else {
         try {
             if (clickedPoint == firstChoice + 1 & ValidatingRepeatedMovement(rowId)){
-                let colors = ApplyingColor(WhoPlays())
+                let whoPlayer = WhoPlays();
+                let colors = ApplyingColor(whoPlayer);
                 rows.style.backgroundColor = colors;
-                CheckingSquare(rowId, colors)
+                CheckingSquare(rowId, colors, whoPlayer)
                 StoringKey(rowId);
             }
             else if (clickedPoint == firstChoice - 1 & ValidatingRepeatedMovement(rowId)){
-                let colors = ApplyingColor(WhoPlays())
+                let whoPlayer = WhoPlays();
+                let colors = ApplyingColor(whoPlayer);
                 rows.style.backgroundColor = colors;
-                CheckingSquare(rowId, colors)
+                CheckingSquare(rowId, colors, whoPlayer)
                 StoringKey(rowId);
             }
             else if (clickedPoint == firstChoice + limite & ValidatingRepeatedMovement(rowDownId)){
-                let colors = ApplyingColor(WhoPlays());
+                let whoPlayer = WhoPlays();
+                let colors = ApplyingColor(whoPlayer);
                 rowsDown.style.backgroundColor = colors; 
-                CheckingSquare(rowDownId, colors)
+                CheckingSquare(rowDownId, colors, whoPlayer)
                 StoringKey(rowDownId);
             } 
             else if (clickedPoint == firstChoice - limite & ValidatingRepeatedMovement(rowDownId)) {
-                let colors = ApplyingColor(WhoPlays());
+                let whoPlayer = WhoPlays();
+                let colors = ApplyingColor(whoPlayer);
                 rowsDown.style.backgroundColor = colors; 
-                CheckingSquare(rowDownId, colors)
+                CheckingSquare(rowDownId, colors, whoPlayer)
                 StoringKey(rowDownId);
             }
             else{

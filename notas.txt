@@ -36,3 +36,10 @@ function CheckingSquare(params) {
 CheckingSquare()
 console.log(`moved 1: ${keySquares[1].moved}. moved 2: ${keySquares[2].moved}`)
 
+let dataPlayer = {
+    'one' : { score: 0, name: 'player One'},
+    'two' : { score: 0, name: 'player Two'}
+};
+
+
+        players.innerHTML = `<h1>${dataPlayer['one'].name}: ${dataPlayer['one'].score} </h1><h1>${dataPlayer['two'].name}: ${dataPlayer['two'].score}</h1>`;
