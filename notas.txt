@@ -1,45 +1,4 @@
+termino do algoritmo 
+Começar a refatorar e corrigir erros de logica
 
-1º Criar uma formula para o codigo saber qual é os pontos que formam um quadrado.
--A formula é: F = 1-2-1-2
-O primeiro quadrado vai ter como esquema o padrão A = 1-10-7-8 e os demais vai ser B = A + F,
-C =  B + F, D = C + F ....
-O código jogar as escolhas validas no BD e esperar as escolhas formarem algum dos esquemas estabelecios para cada quadrado de acordo com a formula.
-
-
-2º Criar uma função que escuta os movimentos, sabendo assim, qual jogador fechou o quadrado.
--Algoritmo que vai fazer a comparação dos movimentos
-let keySquares = {
-  1: {
-    key: [1,2,3,4], 
-    moved: 1,
-  }, 
-  2: {
-    key: [5,6,7,8], 
-    moved: 1,
-  }
-}
-
-function CheckingSquare(params) {
-	for (let index = 1; index <= 2; index++){
-    	console.log(keySquares[index].key.includes(params))
-      
-      if(keySquares[index].key.includes(params)){
-        keySquares[index].moved++;
-        if( keySquares[index].moved == 4){
-          console.log('pinta square')
-        }
-      }
-    }
-        
-}
-
-CheckingSquare()
-console.log(`moved 1: ${keySquares[1].moved}. moved 2: ${keySquares[2].moved}`)
-
-let dataPlayer = {
-    'one' : { score: 0, name: 'player One'},
-    'two' : { score: 0, name: 'player Two'}
-};
-
-
-        players.innerHTML = `<h1>${dataPlayer['one'].name}: ${dataPlayer['one'].score} </h1><h1>${dataPlayer['two'].name}: ${dataPlayer['two'].score}</h1>`;
+1° rever a linha do tempo de cada function para garantir que as funções só são chamadas quando é necessario.

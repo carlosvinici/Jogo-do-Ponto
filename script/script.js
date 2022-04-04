@@ -5,7 +5,7 @@ let dataPlayer = {
     'two' : { score: 0, name: 'player Two'}
 };
 
-function Template(scoreGrid = false, score) {
+function Template(scoreGrid = false) {
     if (!scoreGrid) {
         /* Gerando Botão de Start */
         const button = document.createElement('button');
@@ -16,9 +16,20 @@ function Template(scoreGrid = false, score) {
     }
     else {
         document.getElementById('btn-StartGame').style.visibility = 'hidden';
+        const gridScore = document.createElement('div');
+        main.appendChild(gridScore);
+        gridScore.setAttribute('class', 'gridScore')
+
+        gridScore.innerHTML = `<h1>${dataPlayer['one'].name}: <span id="scoreOne"></span> </h1><h1>${dataPlayer['two'].name}: <span id="scoreTwo"></span></h1>`;
+        RenderScore()
     }
 
 }
+function RenderScore() {
+    document.getElementById('scoreOne').innerHTML = dataPlayer['one'].score;
+    document.getElementById('scoreTwo').innerHTML = dataPlayer['two'].score;
+}
+
 
 let keySquares={};
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
@@ -143,16 +154,25 @@ function ResetChecked(countClick, invalidatedChoice = false){
 
 
 function CheckingSquare(id, color, whoPlayer) {
-    console.log(typeof(whoPlayer))
 	for (let index = 1; index <= 25; index++){
       if(keySquares[index].key.includes(id)){
         keySquares[index].hits++;
+
         if( keySquares[index].hits == 4){
           document.getElementById(`square${index}`).style.background = color;
-          let score = dataPlayer[whoPlayer].score++;
-          Template(score)
+          dataPlayer[whoPlayer].score++;
+          RenderScore();
         }
       }
+      
+    }
+    if (dataPlayer['one'].score + dataPlayer['two'].score == 25){
+        if(dataPlayer['one'].score > dataPlayer['two']){
+            alert(`Jogo Concluido!! O ${dataPlayer['one'].name} Ganhou!!!`)
+        }else{
+            alert(`Jogo Concluido!! O ${dataPlayer['two'].name} Ganhou!!!`)
+        }
+        
     }
         
 }
