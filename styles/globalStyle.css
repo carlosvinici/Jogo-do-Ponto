@@ -48,16 +48,25 @@ main{
     flex-direction: column;
     align-items: center;
 }
-#btn-StartGame {
+.buttonsTemplate{
     padding: 5px 40px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    
     border-radius: 50px;
     background: #74686800;
     border: #ffffffd5 solid 2px;
     color: #ffffff;
+    margin: 1rem auto;
 }
+.buttonsTemplate:hover{
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.651);
+    transition: 0.3s;
+}
+.buttonsTemplate:active{
+    color: #158d1f;
+    border-color: rgba(0, 0, 0, 0.747);
+}
+
+
 
 .gridScore {
     display: flex;
@@ -72,11 +81,31 @@ main{
 
 .formPlayers{
     display: flex;
-    flex-direction: column;
-    width: 200px;
-    height: 300px;
-    background-color: #312c2c;
+    flex-wrap: wrap;
+    width: 15rem;
+    height: 18rem;
+    background-color: transparent;
+    border: #ffffffd5 solid 2px; 
+    border-radius: 15px;
+    font-family: 'Roboto', 'sans-serif';
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
 }
+.inputName{
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
+    border-color: transparent;
+    margin: -20px 0px 0px 0px;
+}
+
+.Inputcolor{
+    padding: 0px;
+    border: transparent;
+    margin: 0px 10px 0px 5px;
+}
+
 
 
 
@@ -111,7 +140,7 @@ input[type='radio']{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
-    margin-top: 84px;
+    margin-top: 67px;
     width: 312px;;
     height: 315px;;
 
@@ -152,4 +181,16 @@ input[type='radio']{
     height: 50px;
     background-color: #dbdfdb91;
     padding: 0;
+}
+
+main p {
+    display: flex;
+    color: #ffffff6b;
+    font-family: 'roboto', sans-serif;
+    font-size: 8pt;
+}
+main p a {
+    color: #ffffff6b;
+    padding-left: 3px;
+    outline-style: none;
 }

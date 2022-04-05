@@ -11,7 +11,8 @@ function Template(scoreGrid = false) {
         const button = document.createElement('button');
         main.appendChild(button);
         button.setAttribute('onclick', 'StartGame()');
-        button.setAttribute('id', 'btn-StartGame')
+        button.setAttribute('id', 'btn-StartGame');
+        button.setAttribute('class', 'buttonsTemplate')
         button.innerHTML = 'Começar';
 
         /* Gerando Formulario */
@@ -28,6 +29,7 @@ function Template(scoreGrid = false) {
         formPlayers.appendChild(inputPlay1)
         inputPlay1.setAttribute('type', 'text');
         inputPlay1.setAttribute('id', 'inputName1')
+        inputPlay1.setAttribute('class', 'inputName');
 
         const formPlay2 = document.createElement('label');
         formPlayers.appendChild(formPlay2);
@@ -36,37 +38,46 @@ function Template(scoreGrid = false) {
         formPlayers.appendChild(inputPlay2);
         inputPlay2.setAttribute('type', 'text');
         inputPlay2.setAttribute('id', 'inputName2');
+        inputPlay2.setAttribute('class', 'inputName');
         
         /* Gerando Inputs Cor*/
         const formColor1 = document.createElement('label');
         formPlayers.appendChild(formColor1);
-        formColor1.innerHTML = 'Play 1 Cor';
+        formColor1.innerHTML = 'Cor 1';
         const inputColor1 = document.createElement('input');
         formPlayers.appendChild(inputColor1);
         inputColor1.setAttribute('type', 'color');
         inputColor1.setAttribute('value', '#0b771a')
         inputColor1.setAttribute('id', 'inputColor1');
+        inputColor1.setAttribute('class', 'Inputcolor');
         
         
         const formColor2 = document.createElement('label');
         formPlayers.appendChild(formColor2);
-        formColor2.innerHTML = 'Play 2 Cor';
+        formColor2.innerHTML = 'Cor 2';
         const inputColor2 = document.createElement('input')
         formPlayers.appendChild(inputColor2);
         inputColor2.setAttribute('type', 'color');
         inputColor2.setAttribute('value', '#d3660c')
         inputColor2.setAttribute('id', 'inputColor2');
+        inputColor2.setAttribute('class', 'Inputcolor');
 
         const inputForm = document.createElement('input');
         inputForm.setAttribute('type', 'submit')
         inputForm.setAttribute('value', 'Salvar')
         inputForm.setAttribute('onclick', 'InputForm(event)')
+        inputForm.setAttribute('class', 'buttonsTemplate');
         formPlayers.appendChild(inputForm);
+
+
+        main.innerHTML += `<p id="footer">Desenvolvido por <a href="https://carlosvinici.github.io/Portifolio/" target="_blank"> Carlos Vinícius </a></p>`;
 
     }
     else {
         document.getElementById('btn-StartGame').style.visibility = 'hidden';
         document.getElementById('inputFormPlayers').style.display = 'none';
+        document.getElementById('footer').style.display = 'none';
+
         const gridScore = document.createElement('div');
         main.appendChild(gridScore);
         gridScore.setAttribute('class', 'gridScore')
@@ -105,13 +116,11 @@ let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a som
 function StartGame() {
     Template(scoreGrid = true)
     localStorage.clear();
-    
-    
 
+    /* Gerando quadrados */
     const containerSquares = document.createElement('div');
     containerSquares.setAttribute('id', 'containerSquares');
     main.appendChild(containerSquares);
-    
     let countSquare = 1;let squareKey = 0;let IdAssistant = 5;let formulaIdA = 10;let formulaIdB = 8;let formulaIdC = 0; let formulaD = 7;
     while (countSquare <= 25){
         const square = document.createElement('div');
@@ -134,11 +143,11 @@ function StartGame() {
         countSquare++
         squareKey++
     }
-    /* Gerando <div> para armazenar os inputs radio */
+
+    /* Gerando os inputs radio */
     const formContainer = document.createElement('form');
     main.appendChild(formContainer);
     formContainer.setAttribute('id', 'InputsRadio');
-
     let countInput = 1; 
     while ( countInput <= 36 ){
 
@@ -191,6 +200,8 @@ function StartGame() {
         
         countInput++;
     };
+
+    
 };
 
 
