@@ -41,8 +41,8 @@ body h1 {
 
 
 main{
-    width: 500px;
-    height: 500px;
+    width: 30rem;
+    height: 30rem;
     background-color: rgba(0, 0, 0, 0.76);
     display: flex;
     flex-direction: column;
@@ -193,4 +193,40 @@ main p a {
     color: #ffffff6b;
     padding-left: 3px;
     outline-style: none;
+}
+
+
+@media screen and (max-width:767px) {
+    main{
+        width: 26rem;
+        height: 26rem;
+        background-color: rgba(0, 0, 0, 0.76);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #InputsRadio{
+        max-width: 260px;
+        max-height: 270px;
+    }
+    .containerRowsDown{
+        width: 248.6px;
+    }
+    
+    .defaultRowRigth {
+        width: 35px; 
+    }
+    .defaultRowDown {
+        height: 35px;
+    }
+    #containerSquares {    
+        width: 248px;
+        height: 240px;
+    
+        position: absolute;
+        align-items: center;
+        justify-items: center;
+        
+        background: rgba(243, 255, 255, 0);
+    }
 }
