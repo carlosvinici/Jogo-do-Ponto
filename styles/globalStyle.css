@@ -70,6 +70,15 @@ main{
 
 }
 
+.formPlayers{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 300px;
+    background-color: #312c2c;
+}
+
+
 
 
 

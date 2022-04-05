@@ -1,8 +1,8 @@
 /* Definindo template */
 const main = document.getElementById('root');
 let dataPlayer = {
-    'one' : { score: 0, name: 'player One'},
-    'two' : { score: 0, name: 'player Two'}
+    'one' : { score: 0, name: 'player One', color: '#0b771a'},
+    'two' : { score: 0, name: 'player Two', color: '#d3660c'}
 };
 
 function Template(scoreGrid = false) {
@@ -13,9 +13,60 @@ function Template(scoreGrid = false) {
         button.setAttribute('onclick', 'StartGame()');
         button.setAttribute('id', 'btn-StartGame')
         button.innerHTML = 'Começar';
+
+        /* Gerando Formulario */
+        const formPlayers = document.createElement('form');
+        main.appendChild(formPlayers);
+        formPlayers.setAttribute('class', 'formPlayers')
+        formPlayers.setAttribute('id', 'inputFormPlayers')
+        
+        /* Gerando inputs Name*/
+        const formPlay1 = document.createElement('label');
+        formPlayers.appendChild(formPlay1);
+        formPlay1.innerHTML = 'Nome do primeiro jogador';
+        const inputPlay1 = document.createElement('input')
+        formPlayers.appendChild(inputPlay1)
+        inputPlay1.setAttribute('type', 'text');
+        inputPlay1.setAttribute('id', 'inputName1')
+
+        const formPlay2 = document.createElement('label');
+        formPlayers.appendChild(formPlay2);
+        formPlay2.innerHTML = 'Nome do segundo jogador';
+        const inputPlay2 = document.createElement('input')
+        formPlayers.appendChild(inputPlay2);
+        inputPlay2.setAttribute('type', 'text');
+        inputPlay2.setAttribute('id', 'inputName2');
+        
+        /* Gerando Inputs Cor*/
+        const formColor1 = document.createElement('label');
+        formPlayers.appendChild(formColor1);
+        formColor1.innerHTML = 'Play 1 Cor';
+        const inputColor1 = document.createElement('input');
+        formPlayers.appendChild(inputColor1);
+        inputColor1.setAttribute('type', 'color');
+        inputColor1.setAttribute('value', '#0b771a')
+        inputColor1.setAttribute('id', 'inputColor1');
+        
+        
+        const formColor2 = document.createElement('label');
+        formPlayers.appendChild(formColor2);
+        formColor2.innerHTML = 'Play 2 Cor';
+        const inputColor2 = document.createElement('input')
+        formPlayers.appendChild(inputColor2);
+        inputColor2.setAttribute('type', 'color');
+        inputColor2.setAttribute('value', '#d3660c')
+        inputColor2.setAttribute('id', 'inputColor2');
+
+        const inputForm = document.createElement('input');
+        inputForm.setAttribute('type', 'submit')
+        inputForm.setAttribute('value', 'Salvar')
+        inputForm.setAttribute('onclick', 'InputForm(event)')
+        formPlayers.appendChild(inputForm);
+
     }
     else {
         document.getElementById('btn-StartGame').style.visibility = 'hidden';
+        document.getElementById('inputFormPlayers').style.display = 'none';
         const gridScore = document.createElement('div');
         main.appendChild(gridScore);
         gridScore.setAttribute('class', 'gridScore')
@@ -23,12 +74,28 @@ function Template(scoreGrid = false) {
         gridScore.innerHTML = `<h1>${dataPlayer['one'].name}: <span id="scoreOne"></span> </h1><h1>${dataPlayer['two'].name}: <span id="scoreTwo"></span></h1>`;
         RenderScore()
     }
-
 }
 function RenderScore() {
     document.getElementById('scoreOne').innerHTML = dataPlayer['one'].score;
     document.getElementById('scoreTwo').innerHTML = dataPlayer['two'].score;
 }
+
+function InputForm(event) {
+    event.preventDefault();
+    const namePlay1 = document.getElementById('inputName1').value;
+    const namePlay2 = document.getElementById('inputName2').value;
+    const colorPlay1 = document.getElementById('inputColor1').value;
+    const colorPlay2 = document.getElementById('inputColor2').value;
+    
+    
+    dataPlayer['one'].name = namePlay1 == '' ?  alert('Não há dados a serem enviados!'): namePlay1 ;
+    dataPlayer['two'].name = namePlay2 == '' ?  alert('Não há dados a serem enviados!'): namePlay2 ;
+
+    dataPlayer['one'].color = colorPlay1;
+    dataPlayer['two'].color = colorPlay2;
+
+}
+
 
 
 let keySquares={};
@@ -139,7 +206,7 @@ function WhoPlays() {
 }
 
 function ApplyingColor(player) {
-    var color = player == 'one' ? '#0b771a' : '#d3660c';
+    var color = player == 'one' ? dataPlayer['one'].color : dataPlayer['two'].color;
     return color;
 }
 
