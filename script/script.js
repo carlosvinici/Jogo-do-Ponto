@@ -1,10 +1,12 @@
-/* Definindo template */
+
 const main = document.getElementById('root');
 let dataPlayer = {
     'one' : { score: 0, name: 'player One', color: '#0b771a'},
     'two' : { score: 0, name: 'player Two', color: '#d3660c'}
 };
+let keySquares={};
 
+/* Criando layout  */
 function Template(scoreGrid = false) {
     if (!scoreGrid) {
         /* Gerando Botão de Start */
@@ -90,7 +92,6 @@ function RenderScore() {
     document.getElementById('scoreOne').innerHTML = dataPlayer['one'].score;
     document.getElementById('scoreTwo').innerHTML = dataPlayer['two'].score;
 }
-
 function InputForm(event) {
     event.preventDefault();
     const namePlay1 = document.getElementById('inputName1').value;
@@ -108,8 +109,6 @@ function InputForm(event) {
 }
 
 
-
-let keySquares={};
 const limite = 6;  /* representa o numero de colunas, sendo limite a ultima coluna */
 let proxLimite = limite;  /* essa variavel vai armazenar os pontos de limite de cada linha*/
 let countId = 4; /* Calcula o id das linhas tranversais para que o id seja a soma dos pontos em suas extremidades */
@@ -276,65 +275,66 @@ function ChoiceValidation(clickedPoint) {
     countClick++
     if (countClick == 1){
         firstChoice = clickedPoint;
-        return;
     }
+    else{
     
-    let rowId = clickedPoint > firstChoice ? (clickedPoint - 1)*100 : (firstChoice - 1)*100;
-    let rowDownId = clickedPoint + firstChoice;
-    const rows = document.getElementById(`row${ rowId }`);
-    const rowsDown = document.getElementById(`rowDown${ rowDownId }`);
-
-    if (clickedPoint == firstChoice){
-        ResetChecked(countClick, clickedPoint); 
-        countClick=0;
-        firstChoice=0;    
-        return
-    }
-    else {
-        try {
-            if (clickedPoint == firstChoice + 1 & ValidatingRepeatedMovement(rowId)){
-                let whoPlayer = WhoPlays();
-                let colors = ApplyingColor(whoPlayer);
-                rows.style.backgroundColor = colors;
-                CheckingSquare(rowId, colors, whoPlayer)
-                StoringKey(rowId);
-            }
-            else if (clickedPoint == firstChoice - 1 & ValidatingRepeatedMovement(rowId)){
-                let whoPlayer = WhoPlays();
-                let colors = ApplyingColor(whoPlayer);
-                rows.style.backgroundColor = colors;
-                CheckingSquare(rowId, colors, whoPlayer)
-                StoringKey(rowId);
-            }
-            else if (clickedPoint == firstChoice + limite & ValidatingRepeatedMovement(rowDownId)){
-                let whoPlayer = WhoPlays();
-                let colors = ApplyingColor(whoPlayer);
-                rowsDown.style.backgroundColor = colors; 
-                CheckingSquare(rowDownId, colors, whoPlayer)
-                StoringKey(rowDownId);
-            } 
-            else if (clickedPoint == firstChoice - limite & ValidatingRepeatedMovement(rowDownId)) {
-                let whoPlayer = WhoPlays();
-                let colors = ApplyingColor(whoPlayer);
-                rowsDown.style.backgroundColor = colors; 
-                CheckingSquare(rowDownId, colors, whoPlayer)
-                StoringKey(rowDownId);
-            }
-            else{
+        let rowId = clickedPoint > firstChoice ? (clickedPoint - 1)*100 : (firstChoice - 1)*100;
+        let rowDownId = clickedPoint + firstChoice;
+        const rows = document.getElementById(`row${ rowId }`);
+        const rowsDown = document.getElementById(`rowDown${ rowDownId }`);
+    
+        if (clickedPoint == firstChoice){
+            ResetChecked(countClick, clickedPoint); 
+            countClick=0;
+            firstChoice=0;    
+            return;
+        }
+        else {
+            try {
+                if (clickedPoint == firstChoice + 1 & ValidatingRepeatedMovement(rowId)){
+                    let whoPlayer = WhoPlays();
+                    let colors = ApplyingColor(whoPlayer);
+                    rows.style.backgroundColor = colors;
+                    CheckingSquare(rowId, colors, whoPlayer)
+                    StoringKey(rowId);
+                }
+                else if (clickedPoint == firstChoice - 1 & ValidatingRepeatedMovement(rowId)){
+                    let whoPlayer = WhoPlays();
+                    let colors = ApplyingColor(whoPlayer);
+                    rows.style.backgroundColor = colors;
+                    CheckingSquare(rowId, colors, whoPlayer)
+                    StoringKey(rowId);
+                }
+                else if (clickedPoint == firstChoice + limite & ValidatingRepeatedMovement(rowDownId)){
+                    let whoPlayer = WhoPlays();
+                    let colors = ApplyingColor(whoPlayer);
+                    rowsDown.style.backgroundColor = colors; 
+                    CheckingSquare(rowDownId, colors, whoPlayer)
+                    StoringKey(rowDownId);
+                } 
+                else if (clickedPoint == firstChoice - limite & ValidatingRepeatedMovement(rowDownId)) {
+                    let whoPlayer = WhoPlays();
+                    let colors = ApplyingColor(whoPlayer);
+                    rowsDown.style.backgroundColor = colors; 
+                    CheckingSquare(rowDownId, colors, whoPlayer)
+                    StoringKey(rowDownId);
+                }
+                else{
+                    ResetChecked(countClick, clickedPoint); 
+                    alert('❌Selecão inválida!❌');
+                    countClick--;    
+                    return
+                } 
+            } catch (error) {
                 ResetChecked(countClick, clickedPoint); 
-                alert('❌Selecão inválida!❌');
+                alert('❌ ' + error + ' ❌');
                 countClick--;    
                 return
-            } 
-        } catch (error) {
-            ResetChecked(countClick, clickedPoint); 
-            alert('❌ ' + error );
-            countClick--;    
-            return
-        }
-    } 
-
-    countClick = 0;   
-    ResetChecked(countClick); 
+            }
+        } 
+    
+        countClick = 0;   
+        ResetChecked(countClick); 
+    }
 }
 
