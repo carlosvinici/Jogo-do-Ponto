@@ -34,10 +34,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 #Status
 <h4 align="center"> 
-	🚧 Concluído 🚧
-</h4>
-Link para Visualizão
+	 O projeto está pronto
+	Link para Visualizão
 https://carlosvinici.github.io/Jogo-do-Ponto/
+	
+</h4>
+
 
 
 
