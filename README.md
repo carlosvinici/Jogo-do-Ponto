@@ -17,9 +17,10 @@ Ao unir os quatro lados e fechar um quadrado você ganha um ponto. O objetivo do
 e você pode unir os pontos que você quiser, assim você monta sua estratégia para não deixar o seu adversário fechar mais quadrados que você. 
 
 #Tecnologias
-![image](https://user-images.githubusercontent.com/71861430/162082651-60baca7e-a6fd-4707-806b-d225edeac540.png)
-![image](https://user-images.githubusercontent.com/71861430/162082770-124de09b-262e-4d92-8fa1-66227e0e2675.png)
-)
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [CSS3](https://pt.wikipedia.org/wiki/CSS3#:~:text=CSS3%20%C3%A9%20a%20terceira%20mais,web%20(p%C3%A1gina%20de%20internet).)
 
 #Status
 <h4 align="center"> 
