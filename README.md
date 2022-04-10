@@ -38,16 +38,38 @@ O objetivo desse projeto foi desenvolver minha lógica de programação e pratic
 criar todo o layout da aplicação e suas funcionalidades usando o javascript puro.
 - Algoritmo <br>
 Tudo se inicia no <br>
+
 ![image](https://user-images.githubusercontent.com/71861430/162596257-fbfb2061-9969-4a22-81fe-11ae0ac1405e.png) <br> 
 
 Aqui a function StartGmae() é chamada <br>
 
-![image](https://user-images.githubusercontent.com/71861430/162596299-c61ea71c-a55a-4152-b055-ff533c36883e.png)
-
+![image](https://user-images.githubusercontent.com/71861430/162596299-c61ea71c-a55a-4152-b055-ff533c36883e.png) <br>
 
 Ela contém dois loops onde os mesmos renderizam os inputs-radio, as linhas e os quadrados. Em todos os elementos é atribuido um id 
-onde os mais importantes são os id's das linhas e dos quadrados que seram usados por outras functions durante a execução.
-![image](https://user-images.githubusercontent.com/71861430/162596485-98f82804-b9ef-4f29-bc19-9f15c44988b7.png)
+onde os mais importantes são os id's das linhas e dos quadrados que seram usados por outras functions durante a execução. O segundo loop renderiza 
+os quadrados e além disso, a cada execução ele cria a chave do quadrado que é composta pelos id's das linhas que o fecham, a chave é armazenada no objeto 
+keySquares <br>
+
+![image](https://user-images.githubusercontent.com/71861430/162596777-565c3376-9573-405a-9945-62cba8655d36.png) <br>
+
+Observe que eu declarei o objeto vazio mas por que? Eu pensei em deixar o jogador escolher a quantidade de pontos pois quanto mais pontos tiver mais a partida vai 
+demorar. Então somente quando a function StartGame() é chamada o keySquares ganha sua estrutura, ficando assim: <br>
+
+keySquares = {
+	1: { --- > esse é o id do quadrado 
+	    hits: 0, --- > essa propriedade tem como valor mínimo 0 e máximo 4.
+	    key: [100, 10, 700, 8] --- > esses são os id's das linhas que formam o quadrado.
+	},
+	2: { 
+	    hits: 0, 
+	    key: [200, 12, 800, 10] 
+	},
+	...
+}
+<br>
+![image](https://user-images.githubusercontent.com/71861430/162596485-98f82804-b9ef-4f29-bc19-9f15c44988b7.png) <br>
+
+Ao clicar em qualquer input outro 
 
 
 
