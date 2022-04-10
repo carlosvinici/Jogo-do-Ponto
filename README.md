@@ -55,19 +55,9 @@ keySquares <br>
 Observe que eu declarei o objeto vazio mas por que? Eu pensei em deixar o jogador escolher a quantidade de pontos pois quanto mais pontos tiver mais a partida vai 
 demorar. Então somente quando a function StartGame() é chamada o keySquares ganha sua estrutura, ficando assim: <br>
 
-keySquares = {
-	1: { --- > esse é o id do quadrado 
-	    hits: 0, --- > essa propriedade tem como valor mínimo 0 e máximo 4.
-	    key: [100, 10, 700, 8] --- > esses são os id's das linhas que formam o quadrado.
-	},
-	2: { 
-	    hits: 0, 
-	    key: [200, 12, 800, 10] 
-	},
-	...
-}
-<br>
-![image](https://user-images.githubusercontent.com/71861430/162596485-98f82804-b9ef-4f29-bc19-9f15c44988b7.png) <br>
+![image](https://user-images.githubusercontent.com/71861430/162597135-81f1106c-467d-44bc-9245-f401de401ce9.png) <br>
+
+
 
 Ao clicar em qualquer input outro 
 
