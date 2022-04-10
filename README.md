@@ -33,7 +33,7 @@ https://carlosvinici.github.io/Jogo-do-Ponto/
 
 
 # Sobre o código 
-- Layout
+- Layout <br>
 O objetivo desse projeto foi desenvolver minha lógica de programação e praticar meus estudos em javascript então tirei o foco do html, resolvi
 criar todo o layout da aplicação e suas funcionalidades usando o javascript puro.
 - Algoritmo
