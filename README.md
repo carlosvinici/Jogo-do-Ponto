@@ -38,13 +38,12 @@ O objetivo desse projeto foi desenvolver minha lógica de programação e pratic
 criar todo o layout da aplicação e suas funcionalidades usando o javascript puro.
 - Algoritmo <br>
 Tudo se inicia no <br>
-</br>
 ![image](https://user-images.githubusercontent.com/71861430/162596257-fbfb2061-9969-4a22-81fe-11ae0ac1405e.png) <br> 
-</br>
+
 Aqui a function StartGmae() é chamada <br>
-</br>
+
 ![image](https://user-images.githubusercontent.com/71861430/162596299-c61ea71c-a55a-4152-b055-ff533c36883e.png)
-</br>
+
 
 Ela contém dois loops onde os mesmos renderizam os inputs-radio, as linhas e os quadrados. Em todos os elementos é atribuido um id 
 onde os mais importantes são os id's das linhas e dos quadrados que seram usados por outras functions durante a execução.
