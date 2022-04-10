@@ -58,8 +58,23 @@ demorar. Então somente quando a function StartGame() é chamada o keySquares ga
 ![image](https://user-images.githubusercontent.com/71861430/162597135-81f1106c-467d-44bc-9245-f401de401ce9.png) <br>
 
 
+Ao clicar em qualquer input a function ChoiceValidation(clickedPoint) é chamada passando como parâmentro o id do ponto clicado. 
+Essa function é responsável por fazer a validação dos pontos que os jogadores querem ligar, caso seja o primeiro ponto selecionado a function vai encerrar 
+e esperar pela seleção do segundo ponto, quando o jogador escolher o segundo ponto e ele for válido ou seja um ponto vizinho ao primeiro selecionado. O algoritmo vai definir através da primeira e segunda escolha o id da linha que liga os pontos selecionados. <br>
 
-Ao clicar em qualquer input outro 
+![image](https://user-images.githubusercontent.com/71861430/162597592-0fac9f6d-dc92-4c81-8828-5aae5767f091.png) <br>
+
+
+identificar o jogador: <br>
+
+![image](https://user-images.githubusercontent.com/71861430/162597347-d3672e9c-acb0-4482-9cd9-50dc5bebcb5b.png) <br>
+
+em seguida recuperar sua cor escolhida ou a cor padrão: <br>
+
+![image](https://user-images.githubusercontent.com/71861430/162597389-0a8ff536-043d-43d4-b8de-53d6e3590c4f.png)
+Obs: DataPlayer é o objeto que contém as informações basicas dos jogadores nome e cor.
+
+
 
 
 
