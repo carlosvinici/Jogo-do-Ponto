@@ -70,9 +70,22 @@ em seguida é identificado o jogador e sua respectiva cor: <br>
 ![image](https://user-images.githubusercontent.com/71861430/162597347-d3672e9c-acb0-4482-9cd9-50dc5bebcb5b.png) <br>
 
 ![image](https://user-images.githubusercontent.com/71861430/162597389-0a8ff536-043d-43d4-b8de-53d6e3590c4f.png) <br>
-Obs: DataPlayer é o objeto que contém as informações basicas dos jogadores nome e cor.
+Obs: DataPlayer é o objeto que contém as informações basicas dos jogadores nome e cor. <br>
 
+![image](https://user-images.githubusercontent.com/71861430/162597793-b5facb3d-de7d-465b-99c5-11fc2721efbc.png) <br>
 
+Guardamos o id da linha no localStorege dentro de storingKey um array , faz parte da validação executar a function ValidatingRepeatedMovement() que
+verifica se o id da linha já não se encontra armazenado, assim evitando movimentos repetidos. <br>
+
+![image](https://user-images.githubusercontent.com/71861430/162597936-db6cf250-eb62-4cec-80fd-dbfdb8be97c2.png) <br>
+
+E por última mas não menos importante a function CheckingSquare(), recebe o id da linha e pecorre a matriz keySquares verificando em quais quadrados
+ele se encontra, após achar, ela incrementa a propriedade hits, quando hits chegar ao valor quatro que é o maximo de ligações para formar o quadrado,
+a function vai colorir o quadrado com a cor do jogador marcador do ponto e atribuir seu ponto.
+É sua tarefa támbem verificar se ainda resta quadrados disponíveis para o jogo continuar, se não o jogo encerra e é comparado o score dos jogadores 
+para definir o campeão. 🎉🏆🥇🎉 <br>
+
+![image](https://user-images.githubusercontent.com/71861430/162598246-b90aaaaa-b2af-4ab9-8026-8e9ddb2995c4.png) <br>
 
 
 
