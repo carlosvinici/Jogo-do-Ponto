@@ -65,13 +65,11 @@ e esperar pela seleção do segundo ponto, quando o jogador escolher o segundo p
 ![image](https://user-images.githubusercontent.com/71861430/162597592-0fac9f6d-dc92-4c81-8828-5aae5767f091.png) <br>
 
 
-identificar o jogador: <br>
+em seguida é identificado o jogador e sua respectiva cor: <br>
 
 ![image](https://user-images.githubusercontent.com/71861430/162597347-d3672e9c-acb0-4482-9cd9-50dc5bebcb5b.png) <br>
 
-em seguida recuperar sua cor escolhida ou a cor padrão: <br>
-
-![image](https://user-images.githubusercontent.com/71861430/162597389-0a8ff536-043d-43d4-b8de-53d6e3590c4f.png)
+![image](https://user-images.githubusercontent.com/71861430/162597389-0a8ff536-043d-43d4-b8de-53d6e3590c4f.png) <br>
 Obs: DataPlayer é o objeto que contém as informações basicas dos jogadores nome e cor.
 
 
