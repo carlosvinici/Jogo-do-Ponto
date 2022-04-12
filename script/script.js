@@ -32,6 +32,8 @@ function Template(scoreGrid = false) {
         inputPlay1.setAttribute('type', 'text');
         inputPlay1.setAttribute('id', 'inputName1')
         inputPlay1.setAttribute('class', 'inputName');
+        inputPlay1.setAttribute('placeholder', 'Player One');
+
 
         const formPlay2 = document.createElement('label');
         formPlayers.appendChild(formPlay2);
@@ -41,6 +43,7 @@ function Template(scoreGrid = false) {
         inputPlay2.setAttribute('type', 'text');
         inputPlay2.setAttribute('id', 'inputName2');
         inputPlay2.setAttribute('class', 'inputName');
+        inputPlay2.setAttribute('placeholder', 'Player Two');
         
         /* Gerando Inputs Cor*/
         const formColor1 = document.createElement('label');
@@ -99,12 +102,21 @@ function InputForm(event) {
     const colorPlay1 = document.getElementById('inputColor1').value;
     const colorPlay2 = document.getElementById('inputColor2').value;
     
-    
-    dataPlayer['one'].name = namePlay1 == '' ?  alert('Não há dados a serem enviados!'): namePlay1 ;
-    dataPlayer['two'].name = namePlay2 == '' ?  alert('Não há dados a serem enviados!'): namePlay2 ;
-
     dataPlayer['one'].color = colorPlay1;
-    dataPlayer['two'].color = colorPlay2;
+    dataPlayer['two'].color = colorPlay2;   
+    
+    if (namePlay1 != '' || namePlay2 != '') {
+
+        dataPlayer['one'].name = namePlay1 == '' ?  dataPlayer['one'].name : namePlay1;
+        dataPlayer['two'].name = namePlay2 == '' ?  dataPlayer['two'].name : namePlay2;
+
+
+    }else{
+        alert('Sem dados para salvar')
+    }
+
+    
+
 
 }
 
