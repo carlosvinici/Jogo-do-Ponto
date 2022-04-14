@@ -68,6 +68,11 @@ main{
 }
 
 
+#btn-ExitGame{
+    border-color: rgb(253, 65, 65);
+    color: rgb(253, 65, 65);
+}
+
 
 .gridScore {
     display: flex;
@@ -77,6 +82,7 @@ main{
     color: white;
     font-family: 'Roboto', sans-serif;
     position: absolute;
+    border-bottom: 0.5px solid ;
 
 }
 
@@ -200,6 +206,9 @@ main p a {
     }
     .buttonsTemplate{
         font-size: 1.2rem;
+    }
+    .gridScore{
+        width: 80vw;
     }
 
     .formPlayers{

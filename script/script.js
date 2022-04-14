@@ -213,8 +213,16 @@ function StartGame() {
     };
 
     
+    const buttonExit = document.createElement('button');
+    main.appendChild(buttonExit);
+    buttonExit.setAttribute('id', 'btn-ExitGame');
+    buttonExit.setAttribute('onclick', 'ExitGame()');
+    buttonExit.setAttribute('class', 'buttonsTemplate')
+    buttonExit.innerHTML = 'Sair';
 };
-
+function ExitGame() {
+    document.location.reload(true);
+}
 
 let countPlayerChoice = 0; 
 function WhoPlays() {
