@@ -93,20 +93,17 @@ function Layout(scoreGrid = false) {
     }
 
     /* modal */
-    const modalsContainer = document.createElement('div');
-    modals.appendChild(modalsContainer);
-    modalsContainer.setAttribute('id', 'modalsContainer');
-    modalsContainer.setAttribute('class', 'modal');
-    
+    modals.setAttribute('class', 'modal');
     
     const modalsContent = document.createElement('div');
-    modalsContainer.appendChild(modalsContent);
-    modalsContent.setAttribute('class', 'modalsContent');
+    modals.appendChild(modalsContent);
+    modalsContent.setAttribute('class', 'modal-content');
 
     const modalsContentSpan = document.createElement('span');
     modalsContent.appendChild(modalsContentSpan);
     modalsContentSpan.setAttribute('class', 'close');
     modalsContentSpan.setAttribute('onclick', 'CloseModal()')
+    modalsContentSpan.innerHTML = '❌';
 }
 function RenderScore() {
     document.getElementById('scoreOne').innerHTML = dataPlayer['one'].score;
@@ -244,6 +241,7 @@ function ExitGame() {
 
 
 
+
 function WinPlayerModal() {
     modals.style.display = "block";
 }
@@ -252,7 +250,7 @@ function CloseModal() {
 }
 window.onclick = function(event) {
     if (event.target == modals) {
-      modals.style.display = "none";
+        modals.style.display = "none";
     }
   }
 
