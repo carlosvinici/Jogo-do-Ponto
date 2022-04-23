@@ -98,6 +98,7 @@ function Layout(scoreGrid = false) {
     const modalsContent = document.createElement('div');
     modals.appendChild(modalsContent);
     modalsContent.setAttribute('class', 'modal-content');
+    modalsContent.setAttribute('id', 'modalContent');
 
     const modalsContentSpan = document.createElement('span');
     modalsContent.appendChild(modalsContentSpan);
@@ -238,13 +239,11 @@ function ExitGame() {
 }
 
 
-
-
-
-
-function WinPlayerModal() {
+function WinPlayerModal(winPlayer) {
     modals.style.display = "block";
-}
+    const modalContentWin = document.getElementById('modalContent');
+    modalContentWin.innerHTML = `<span>Jogo Finalizado!!!</span><span>O jogador ${winPlayer} é o vencedor!</span>`;
+}   
 function CloseModal() {
     modals.style.display = "none";
 }

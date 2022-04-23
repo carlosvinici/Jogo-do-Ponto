@@ -30,9 +30,12 @@ function CheckingSquare(id, color, whoPlayer) {
     }
     if (dataPlayer['one'].score + dataPlayer['two'].score == 25){
         if(dataPlayer['one'].score > dataPlayer['two']){
-            alert(`Jogo Concluido!! O ${dataPlayer['one'].name} Ganhou!!!`)
-        }else{
-            alert(`Jogo Concluido!! O ${dataPlayer['two'].name} Ganhou!!!`)
+            let winPlayer = dataPlayer['one'].name;
+            WinPlayerModal(winPlayer);
+        }
+        else{
+            let winPlayer = dataPlayer['two'].name;
+            WinPlayerModal(winPlayer);
         }
         
     }
