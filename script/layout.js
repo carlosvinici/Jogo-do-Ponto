@@ -1,6 +1,7 @@
 const main = document.getElementById('gameContainer');
 const modals = document.getElementById('modals');
 
+
 let dataPlayer = {
     'one' : { score: 0, name: 'player One', color: '#0b771a'},
     'two' : { score: 0, name: 'player Two', color: '#d3660c'}
@@ -76,6 +77,25 @@ function Layout(scoreGrid = false) {
         formPlayers.appendChild(inputForm);
 
 
+        /* modal */
+        modals.setAttribute('class', 'modal');
+
+        const modalsContent = document.createElement('div');
+        modals.appendChild(modalsContent);
+        modalsContent.setAttribute('class', 'modal-content');
+        modalsContent.setAttribute('id', 'modalContent');
+
+        const contentStatus = document.createElement('div');
+        modalsContent.appendChild(contentStatus);
+        contentStatus.setAttribute('class', 'modal-content-status');
+        contentStatus.setAttribute('id', 'modalContentStatus');
+    
+        const modalsContentSpan = document.createElement('button');
+        modalsContent.appendChild(modalsContentSpan);
+        modalsContentSpan.setAttribute('class', 'close');
+        modalsContentSpan.setAttribute('onclick', 'ExitGame()')
+        modalsContentSpan.innerHTML = 'Jogar Novamente'
+
         main.innerHTML += `<p id="footer">Desenvolvido por <a href="https://carlosvinici.github.io/Portifolio/" target="_blank"> Carlos Vinícius </a></p>`;
 
     }
@@ -91,20 +111,6 @@ function Layout(scoreGrid = false) {
         gridScore.innerHTML = `<h1>${dataPlayer['one'].name}: <span id="scoreOne"></span> </h1><h1>${dataPlayer['two'].name}: <span id="scoreTwo"></span></h1>`;
         RenderScore()
     }
-
-    /* modal */
-    modals.setAttribute('class', 'modal');
-    
-    const modalsContent = document.createElement('div');
-    modals.appendChild(modalsContent);
-    modalsContent.setAttribute('class', 'modal-content');
-    modalsContent.setAttribute('id', 'modalContent');
-
-    const modalsContentSpan = document.createElement('span');
-    modalsContent.appendChild(modalsContentSpan);
-    modalsContentSpan.setAttribute('class', 'close');
-    modalsContentSpan.setAttribute('onclick', 'CloseModal()')
-    modalsContentSpan.innerHTML = '❌';
 }
 function RenderScore() {
     document.getElementById('scoreOne').innerHTML = dataPlayer['one'].score;
@@ -241,15 +247,11 @@ function ExitGame() {
 
 function WinPlayerModal(winPlayer) {
     modals.style.display = "block";
-    const modalContentWin = document.getElementById('modalContent');
-    modalContentWin.innerHTML = `<span>Jogo Finalizado!!!</span><span>O jogador ${winPlayer} é o vencedor!</span>`;
+    const modalContentWin = document.getElementById('modalContentStatus');
+    modalContentWin.innerHTML += `<h1>🏁 Jogo Finalizado 🏁</h1><h1>🏆 O jogador ${winPlayer} é o vencedor! 🏆</h1><h2> Pontuação </h2><h2> ${dataPlayer['one'].name} : ${dataPlayer['one'].score} </h2><h2> ${dataPlayer['two'].name} : ${dataPlayer['two'].score} </h2>`;
 }   
-function CloseModal() {
-    modals.style.display = "none";
-}
 window.onclick = function(event) {
     if (event.target == modals) {
         modals.style.display = "none";
     }
   }
-

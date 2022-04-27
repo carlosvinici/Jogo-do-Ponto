@@ -29,7 +29,7 @@ function CheckingSquare(id, color, whoPlayer) {
       
     }
     if (dataPlayer['one'].score + dataPlayer['two'].score == 25){
-        if(dataPlayer['one'].score > dataPlayer['two']){
+        if(dataPlayer['one'].score > dataPlayer['two'].score){
             let winPlayer = dataPlayer['one'].name;
             WinPlayerModal(winPlayer);
         }
