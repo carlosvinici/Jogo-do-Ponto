@@ -131,7 +131,11 @@ function InputForm(event) {
         dataPlayer['one'].name = namePlay1 == '' ?  dataPlayer['one'].name : namePlay1;
         dataPlayer['two'].name = namePlay2 == '' ?  dataPlayer['two'].name : namePlay2;
 
-
+        const toast = document.createElement('div');
+        main.appendChild(toast);
+        toast.setAttribute('class', 'toast-input-data-player');
+        toast.innerHTML = 'Dados Salvos';
+        
     }else{
         alert('Sem dados para salvar')
     }

@@ -109,6 +109,34 @@ main{
     border: transparent;
 }
 
+@keyframes toastAnimation{
+    0% {
+        opacity: 100%;
+        top: -40px;
+    }
+    50%{
+        top: 0;
+    }
+    100% {
+        opacity: 20%;
+        
+    }
+}
+.toast-input-data-player {
+    display: flex;
+    align-items: center;
+    top: 0;
+    justify-content: center;
+    position: absolute;
+    width: 12vw;
+    height: 5vh;
+    background-color: #0b771a;
+    color: white;
+    opacity: 0%;
+    animation: toastAnimation 6s ;
+}
+
+
 
 #InputsRadio{
     display: flex;
